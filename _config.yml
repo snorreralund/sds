@@ -1,0 +1,11 @@
+# Site settings
+title: Social Data Science
+#email: sebastian.barfort@econ.ku.dk
+description: Summer School 2016<br/> Department of Economics<br/> University of Copenhagen
+baseurl: "/sds_summer"
+url:  "sebastianbarfort.github.io" # the base hostname & protocol for your site
+#twitter_username:
+github_username:  sds_summer
+
+# Build settings
+markdown: kramdown
