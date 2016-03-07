@@ -74,7 +74,7 @@ Here are some books you may find of use throughout the course. None is required 
 - Yollin, Bethany. 2014. "[Working with Geospatial Data (and ggplot2)](http://mazamascience.com/WorkingWithData/?p=1494)".
 
 
-# Data Import & Web Scraping 
+# Data Import & Web Scraping
 
 **Mandatory**
 
@@ -138,6 +138,8 @@ Here are some books you may find of use throughout the course. None is required 
 
 - Blackwell, Matthew, and Maya Sen. 2012. [''Large Datasets and You: A Field Guide''](http://scholar.harvard.edu/files/msen/files/blackwell_sen_tpm.pdf), *The Political Methodologist* 20(1): 2-5.
 
+- Mann, Adam. 2016. "[Core Concepts: Computational social science](http://www.pnas.org/content/113/3/468.short)." *Proceedings of the National Academy of Sciences*, 113.3: 468-470.
+
 # Causal Inference vs. Statistical Learning
 
 - Varian. Hal. 2014. "[Big Data: New Tricks for Econometrics]((http://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.3)). *Journal of Economic Perspectives*, 28.2: 3-27.
@@ -195,3 +197,5 @@ Here are some books you may find of use throughout the course. None is required 
 - Meyer, Michelle. 2014. "[Misjudgements will drive social trials underground](http://www.nature.com/news/misjudgements-will-drive-social-trials-underground-1.15553)." *Nature* 511.7509: 265-265.
 
 - Tufekci, Zeynep. 2014. "[Facebook and Engineering the Public](https://medium.com/message/engineering-the-public-289c91390225#.g3cu1cnxk)".
+
+-O'Neil, Cathy. 2016. "[The Ethical Data Scientist](http://www.slate.com/articles/technology/future_tense/2016/02/how_to_bring_better_ethics_to_data_science.html)". Slate.
