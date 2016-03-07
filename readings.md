@@ -198,4 +198,4 @@ Here are some books you may find of use throughout the course. None is required 
 
 - Tufekci, Zeynep. 2014. "[Facebook and Engineering the Public](https://medium.com/message/engineering-the-public-289c91390225#.g3cu1cnxk)".
 
--O'Neil, Cathy. 2016. "[The Ethical Data Scientist](http://www.slate.com/articles/technology/future_tense/2016/02/how_to_bring_better_ethics_to_data_science.html)". Slate.
+- O'Neil, Cathy. 2016. "[The Ethical Data Scientist](http://www.slate.com/articles/technology/future_tense/2016/02/how_to_bring_better_ethics_to_data_science.html)". Slate.
