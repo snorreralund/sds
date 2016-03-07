@@ -4,9 +4,10 @@
 Summer School 2016<br/>
 Department of Economics<br/>
 University of Copenhagen<br/>
-Instructors: <a href="http://www.econ.ku.dk/ddl/">David Dreyer Lassen</a>, <a href="http://sebastianbarfort.github.io/">Sebastian Barfort</a><br/>
-Time: XXX <br/>
-Location: XXX <br/>
+Instructors: <a href="http://www.econ.ku.dk/ddl/">David Dreyer Lassen</a> & <a href="http://sebastianbarfort.github.io/">Sebastian Barfort</a><br/>
+Date: August 8 - August 26, 2016 <br/>
+Time: Lectures: 9-12, Exercises: 14-16  <br/>
+Location: TBA <br/>
 </center>
 <br/>
 
@@ -19,7 +20,7 @@ This aim of this course is fourfold:
 3. We will introduce students to statistical techniques for predicting and classification, known as statistical learning, and we will discuss how these methods relate to existing empirical tools within economics such as causal inference and regression.
 4. We will present modern data science methods needed for working with computational social science and social data *in practice*. Being an effective economist and data scientist means spending large fractions of our time writing and debugging code. In this section you will learn how to write code to clean, transform, scrape, merge, visualize and analyze social data.
 
-The course will consist of XXX hours of lectures and XXX hours of exercises and problem solving per day. The lectures will focus on the broad topics covered in the course (part 1-3 listed above). In the exercise classes we will get our hands dirty and present data science methods needed for collecting and analyzing real-world data. In addition to core computational concepts, these classes will focus on the following topics
+The course will consist of 3 hours of lectures and 2 hours of exercises and problem solving per day. The lectures will focus on the broad topics covered in the course (part 1-3 listed above). In the exercise classes we will get our hands dirty and present data science methods needed for collecting and analyzing real-world data. In addition to core computational concepts, these classes will focus on the following topics
 
 1. **Generating new data**: We will learn how to collect and scrape data from websites as well as working with [APIs](http://en.wikipedia.org/wiki/Application_programming_interface).
 2. **Data manipulation tools**: Participants will learn how to import, transform, munge and merge data from various sources.
@@ -27,7 +28,7 @@ The course will consist of XXX hours of lectures and XXX hours of exercises and 
 4. **Reproducability tools**: Participants will learn how to use version control and social coding using [Github](http://en.wikipedia.org/wiki/GitHub) and how to effectively communicate the insights of an analysis using markdown.
 5. **Prediction tools**: We will cover key implementations of statistical learning algorithms and participants will learn how to apply and interpret these models in practice.
 
-XXX hours of exercises a week is not a large amount of time for learning how to code. We will use some of this time like development meetings: going over assignments, having detailed code reviews of various forms, and discussing blocking issues and potential solutions.
+2 hours of exercises a day is not a large amount of time for learning how to code. We will use some of this time like development meetings: going over assignments, having detailed code reviews of various forms, and discussing blocking issues and potential solutions.
 
 As increasing emphasis in academics is being placed on the skills needed to effectively gather, handle, and analyze data as well as present results to a range of audiences, this course will provide you with important tools for future academic study. Furthermore, the skills taught in this course are also widely used in business. R programming skills in particular are [highly valued](http://blog.revolutionanalytics.com/2014/02/r-salary-surveys.html) in fields such as finance and information technology. As this course is focused on general skills for working with social science data such as gathering and visualization, it is equally relevant for students seeking careers outside academia where skills such as the ability to effectively communicate the results of an analysis are in high demand.
 
