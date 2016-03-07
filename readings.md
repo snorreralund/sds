@@ -20,7 +20,7 @@ Here are some books you may find of use throughout the course. None is required 
 
 - Hadley Wickham. 2009. *ggplot2: Elegant Graphics for Data Analysis*. Springer.
 
-- Grolemund, Garrett and Hadley Wickham. 2016. *[R for Data Science](http://r4ds.had.co.nz/)*. 
+- Grolemund, Garrett and Hadley Wickham. 2016. *[R for Data Science](http://r4ds.had.co.nz/)*.
 
 - Spraul, V. Anton. 2012. *Think like a Programmer*. San Francisco: No Starch Press.
 
@@ -74,7 +74,7 @@ Here are some books you may find of use throughout the course. None is required 
 - Yollin, Bethany. 2014. "[Working with Geospatial Data (and ggplot2)](http://mazamascience.com/WorkingWithData/?p=1494)".
 
 
-# Data Import
+# Data Import & Web Scraping 
 
 **Mandatory**
 
