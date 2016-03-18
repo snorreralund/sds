@@ -4,6 +4,16 @@ title: Readings
 permalink: /readings/
 ---
 
+# Text books
+
+We will use the two following books throughout the course
+
+- Grolemund, Garrett and Hadley Wickham. 2016. *[R for Data Science](http://r4ds.had.co.nz/)*.
+
+- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*.
+
+None of the books are available for purchase yet. The Grolemund and Wickham book is freely available online. The Imai book is forthcoming at Princeton University Press.  Professor Imai has  kindly given us permission to use the textbook free of charge in advance of its official release.  I will make a PDF of the book available when the course begins. Please do not circulate it!
+
 # R & Programming Resources
 
 Here are some books you may find of use throughout the course. None is required to purchase, and readings will be provided as PDFs as needed. But they're good. Note that many of these are available online (e.g. at Springer's SpringerLink website) in their entirety.
@@ -19,8 +29,6 @@ Here are some books you may find of use throughout the course. None is required 
 - W.N. Venables and B.D. Ripley. 2002 *Modern Applied Statistics with S*. 4th Ed.
 
 - Hadley Wickham. 2009. *ggplot2: Elegant Graphics for Data Analysis*. Springer.
-
-- Grolemund, Garrett and Hadley Wickham. 2016. *[R for Data Science](http://r4ds.had.co.nz/)*.
 
 - Spraul, V. Anton. 2012. *Think like a Programmer*. San Francisco: No Starch Press.
 
