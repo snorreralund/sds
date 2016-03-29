@@ -148,6 +148,8 @@ Here are some books you may find of use throughout the course. None is required 
 
 - Mann, Adam. 2016. "[Core Concepts: Computational social science](http://www.pnas.org/content/113/3/468.short)." *Proceedings of the National Academy of Sciences*, 113.3: 468-470.
 
+- Cavallo, Alberto, and Roberto Rigobon. 2016. "[The Billion Prices Project: Using Online Prices for Measurement and Research](https://www.nber.org/papers/w22111?utm_campaign=ntw&utm_medium=email&utm_source=ntw)." NBER Working Paper. 
+
 # Causal Inference vs. Statistical Learning
 
 - Varian. Hal. 2014. "[Big Data: New Tricks for Econometrics]((http://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.3)). *Journal of Economic Perspectives*, 28.2: 3-27.
