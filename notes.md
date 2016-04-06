@@ -1,4 +1,11 @@
 
+
+https://medium.com/airbnb-engineering/using-r-packages-and-education-to-scale-data-science-at-airbnb-906faa58e12d#.r3a34m3i5
+
+http://www.science.smith.edu/~bbaumer/sds192-s16/schedule.html
+
+
+
 # Notes
 
 The course consists of 2 hours of classes (lectures) every week and 2x2 hours every second week for 14 weeks.
