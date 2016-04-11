@@ -1,4 +1,5 @@
 
+http://www.investors.com/news/technology/amazon-microsoft-among-techs-that-say-employing-economists-adds-up/
 
 https://medium.com/airbnb-engineering/using-r-packages-and-education-to-scale-data-science-at-airbnb-906faa58e12d#.r3a34m3i5
 
