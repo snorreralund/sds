@@ -152,6 +152,10 @@ Here are some books you may find of use throughout the course. None is required 
 
 # Causal Inference vs. Statistical Learning
 
+- PNAS Special Issue on Causal Inference with Big Data. [Link](http://www.pnas.org/content/113/27.toc#SacklerColloquiumonDrawingCausalInferencefromBigDataFreeOnline)
+
+- Samii, Cyrus. 2016. ["Causal Empiricism in Quantitative Research"](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2776850). *Journal of Politics* 78(3):941–955.
+
 - Varian. Hal. 2014. "[Big Data: New Tricks for Econometrics]((http://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.3)). *Journal of Economic Perspectives*, 28.2: 3-27.
 
 - Angrist, Joshua D., and Jörn-Steffen Pischke. 2014. "Mastering'metrics: The path from cause to effect". Princeton University Press. (pages: XI-XV, 1-14)
