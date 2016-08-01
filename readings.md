@@ -29,11 +29,13 @@ posts
 
 **Required**
 
+- Grolemund, Garrett and Hadley Wickham. 2016. "[R for Data Science](http://r4ds.had.co.nz/)". Read chapters 3, 4 and 9. Browse chapter 15.
+
+Browse the following
+
 - Schwabish, Jonathan A. 2014. "[An Economist's Guide to Visualizing Data](https://www.aeaweb.org/articles.php?doi=10.1257/jep.28.1.209)". *Journal of Economic Perspectives*, 28(1): 209-34.
 
 - Healy, Kieran and James Moody. 2014. "[Data Visualization in Sociology](http://kieranhealy.org/files/papers/data-visualization.pdf)". *Annual Review of Sociology*, 40:105–128.
-
-- Grolemund, Garrett and Hadley Wickham. 2016. "[R for Data Science](http://r4ds.had.co.nz/)". Read chapters 3, 4, 8 and 9. Browse chapter 15.
 
 
 **Inspiration**
