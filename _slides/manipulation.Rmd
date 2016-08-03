@@ -1,0 +1,597 @@
+---
+author: Sebastian Barfort
+title: "Social Data Science"
+subtitle: Data Manipulation
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  beamer_presentation:
+    keep_tex: no
+    theme: metropolis
+    latex_engine: xelatex
+    slide_level: 2
+    incremental: no
+    fig_width: 7
+    fig_height: 6
+    fig_caption: false
+    includes:
+      in_header: header.tex
+fontsize: 10pt
+classoption: compress
+---
+
+```{r Setup, include=FALSE, results='hide', warning=FALSE}
+hook_output = knitr::knit_hooks$get('output')
+knitr::knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+knitr::opts_chunk$set(
+              dev= "pdf",
+               fig.width=4.25,
+               fig.height=2.5,
+               fig.show="hold",
+               fig.lp="fig:",
+               fig.align = "center",
+               dpi = 300,
+               cache=TRUE,
+               par=TRUE,
+               echo=TRUE,
+               message=FALSE,
+               warning=FALSE)
+```
+
+## 
+
+- `dplyr`
+- `tidyr`
+- `purrr`
+- `tidytext`
+- `stringr`
+
+## Intro 
+
+> "Herein lies the dirty secret about most data scientists' work – it's more data munging than deep learning. The best minds of my generation are deleting commas from log files, and that makes me sad. A Ph.D. is a terrible thing to waste."
+
+[Source](http://adage.com/article/digitalnext/dear-madison-avenue-set-data-scientists-free/298676/)
+
+## Data janitor
+
+![](figures/janitor.png)
+
+[Source](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)
+
+## Raw versus processed data
+
+### Raw data 
+
+The original source of the data
+
+Often hard to use directly for data analysis
+
+You should *never* process your original data
+
+### Processed data
+
+Data that is ready for analysis
+
+Data manipulation involves going from *raw* to *processed* data. 
+
+This can include merging, subsetting, transforming, etc. 
+
+*All* steps that take you from raw to processed data should be scripted
+
+## Workflow
+
+![](figures/workflow.jpg)
+
+---
+
+\LARGE Tidy data
+
+## `tidyr`  
+
+> Happy families are all alike; every unhappy family is unhappy in its own way 
+
+*Leo Tolstoy*
+
+Goal of `tidyr`: take your messy data and turn it into a tidy format
+
+**tidy data**: observations are in the rows, variables are in the columns
+
+## Tidy data
+
+![](figures/tidy-1.png)
+
+## Tidy data 
+
+```{r, message = FALSE, tidy=FALSE}
+library("readr")
+library("dplyr")
+library("tidyr")
+
+df = read_csv("https://raw.githubusercontent.com/hadley/tidyr/master/vignettes/pew.csv")
+head(df, 3)
+```
+
+**Question 1**: What variables are in this dataset?
+
+**Question 2**: How does a tidy version of this data look like?
+
+## The `gather` function
+
+**Objective**: Reshaping wide format to long format
+
+To tidy this data, we need to **gather** the non-variable columns into a two-column key-value pair
+
+```{r}
+args(gather)
+```
+
+Arguments:
+
+- `data`: data frame
+- `key`: column name representing new variable
+- `value`: column name representing variable values
+- `...`: names of columns to gather (or not gather)
+
+## `gather` at work
+
+```{r}
+df %>% gather(income, frequency, -religion)
+```
+
+## Alternatives
+
+This
+
+```{r, eval = FALSE}
+df %>% gather(income, frequency, 2:11)
+```
+
+returns the same as 
+
+```{r, eval = FALSE}
+df %>% gather(income, frequency, -religion)
+```
+
+## More complicated example
+
+Billboard data
+
+```{r, message = FALSE}
+
+df = read_csv("https://raw.githubusercontent.com/hadley/tidyr/master/vignettes/billboard.csv")
+head(df, 3)
+```
+
+**Question**: what are the variables here? 
+
+## Tidying the Billboard data
+
+To tidy this dataset, we first gather together all the `wk` columns. The column names give the week and the values are the ranks:
+
+```{r}
+billboard2 = df %>% 
+  gather(week, rank, wk1:wk76,na.rm = TRUE)
+head(billboard2, 3)
+```
+
+What more would we want to do to the data?
+
+## Data cleaning
+
+Let's turn the week into a numeric variable and create a proper date column
+
+```{r}
+billboard3 = billboard2 %>%
+  mutate(
+    week = extract_numeric(week),
+    date = as.Date(date.entered) + 7 * (week - 1)) %>%
+  select(-date.entered) %>% 
+  arrange(artist, track, week)
+head(billboard3, 3)
+```
+
+## Even more complicated example
+
+After gathering columns, the key column is sometimes a combination of multiple underlying variable names. 
+
+```{r, message = FALSE}
+
+df = read_csv("https://raw.githubusercontent.com/hadley/tidyr/master/vignettes/tb.csv")
+head(df, 3)
+```
+
+**Question**: what are the variables here?
+
+## Answer
+
+The dataset comes from the World Health Organisation, and records the counts of confirmed tuberculosis cases by country, year, and demographic group. The demographic groups are broken down by sex (m, f) and age (0-14, 15-25, 25-34, 35-44, 45-54, 55-64, unknown).
+
+## Gathering the non-variable columns
+
+```{r}
+tb2 = df %>% 
+  gather(demo, n, -iso2, -year, na.rm = TRUE)
+head(tb2, 3)
+```
+
+Is this dataset tidy?
+
+## Separating the `demo` variable
+
+`separate` makes it easy to split a compound variables into individual variables. You can either pass it a regular expression to split on or a vector of character positions. In this case we want to split after the first character.
+
+```{r}
+tb3 = tb2 %>% 
+  separate(demo, c("sex", "age"), 1)
+head(tb3, 3)
+```
+
+**Question**: Compare `tb3` to the original data frame (`df`). What are the advantages of having our data stored in a tidy format?
+
+## Reshaping from long to wide format
+
+There are times when we are required to turn long formatted data into wide formatted data. The `spread` function spreads a key-value pair across multiple columns.
+
+```{r}
+args(spread)
+```
+
+
+- `data`: data frame
+- `key`: column values to convert to multiple columns
+- `value`: single column values to convert to multiple columns' values 
+- `fill`: If there isn't a value for every combination of the other variables and the key column, this value will be substituted
+
+## `spread` in action
+
+```{r}
+tb3.wide = tb3 %>% spread(age, n)
+tb3.wide
+```
+
+
+## Data for today
+
+In this part of the lecture we will work with the Danish federal budget proposal for 2016
+
+```{r, message = FALSE, warning = FALSE}
+library("readr")
+df = read_csv("https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pages/data/finanslov_tidy.csv")
+```
+
+Some nice guy has already cleaned this data for you
+
+## Overview of your data
+
+Useful functions: 
+
+- `str`: displays the structure of your data frame
+- `head`: displays the first rows
+- `summary`: gives summary statistics
+- `glimpse` (from the `dplyr` package): modern alternative to `str`
+
+## `str`
+
+```{r, message = FALSE, warning = FALSE}
+str(df)
+```
+
+## `head`
+
+```{r, message = FALSE, warning = FALSE}
+head(df)
+```
+
+
+## `summary`
+
+```{r, message = FALSE, warning = FALSE}
+summary(df)
+```
+
+## `glimpse`
+
+```{r, message = FALSE, warning = FALSE}
+library("dplyr")
+glimpse(df)
+```
+
+---
+
+\LARGE Data Manipulation (`dplyr`)
+
+## The Split-Apply-Combine approach 
+
+Many data analysis problems involve the application of a *split-apply-combine strategy*, where you break up a big problem into manageable pieces, opereate on each piece independently and then put the pieces back together
+
+![](figures/split.png)
+
+## Split-Apply-Combine
+
+![](figures/split-apply-combine.png)
+
+## The `dplyr` package
+
+`dplyr`: (efficiently) split-apply-combine for data frames
+
+**Verbs** 
+a verb is a function that takes a data frame as it's first argument
+
+- `filter`: select rows
+- `arrange`: order rows
+- `select`: select columns
+- `rename`: rename columns
+- `distinct`: find distinct rows
+- `mutate`: add new variables
+- `summarise`: summarize across a data set
+- `sample_n`: sample from a data set 
+
+## The `filter` function I
+
+```{r}
+filter(df, udgift == min(udgift))
+```
+
+```{r}
+filter(df, paragraf == "Skatter og afgifter ")
+```
+
+## Logical operators
+
+![](figures/transform-logical.png)
+
+## Combining conditions: `and`
+
+You can easily combine conditions
+
+```{r}
+filter(df, paragraf == "Skatter og afgifter " & aktivitet == "Personskatter ")
+```
+
+## Combining conditions: `or`
+
+```{r}
+filter(df, paragraf == "Skatter og afgifter " | aktivitet == "Personskatter ")
+```
+
+## The `select` function
+
+```{r}
+select(df, aar, udgift)
+```
+
+## The `arrange` function
+
+```{r}
+arrange(df, hovedomrode, udgift)
+```
+
+## Arrange by numeric variable
+
+```{r}
+arrange(df, -aar)
+```
+
+## The `mutate` function
+
+`mutate` let's you add new variables to your data frame
+
+```{r}
+df.mutated = mutate(df, newVar = udgift/2)
+select(df.mutated, newVar, udgift)
+```
+
+## The `sample_n` function
+
+```{r}
+sample_n(df, 3)
+```
+
+## Digression: Meet the pipe
+
+![](figures/pipe.png)
+
+## The pipe operator
+
+The pipe operator `%>%` (RStudio has keyboard shortcuts, learn to use them!) let's you write sequences instead of nested functions
+
+`x %>% f(y)` -> `f(x,y)`
+    
+`x %>% f(z, .)` -> `f(z, x)`
+
+Read `%>%` as "then". First do this, *then* do this, etc...
+
+It's implemented in `R` by a [Danish econometrician](https://twitter.com/stefanbache)
+
+## Intuition 
+
+![](figures/romain.jpg)
+
+[source](http://www.slideshare.net/romainfrancois)
+
+## Combining `dplyr` and the pipe
+
+`dplyr` is designed to work with the pipe.
+
+So 
+
+```{r, eval = FALSE}
+df %>% 
+  select(aar, udgift) %>% 
+  filter(aar == 2014)
+```
+
+returns the same as
+
+```{r, eval = FALSE}
+filter(select(df, aar, udgift), aar == 2014)
+```
+
+## Example
+
+Show me a random sample of the data from 2014, where `paragraf == Folketinget` and `udgift` is above the mean.
+
+```{r}
+df.1 = filter(df, aar == 2014 & paragraf == "Folketinget")
+df.2 = filter(df.1, udgift > mean(udgift, na.rm = TRUE))
+df.3 = sample_n(df.2, 3)
+df.3
+```
+
+## With the pipe
+
+```{r}
+df %>% 
+  filter(aar == 2014 & paragraf == "Folketinget") %>% 
+  filter(udgift > mean(udgift, na.rm = TRUE)) %>% 
+  sample_n(3)
+```
+
+Note how readable the code is. Almost like a grammer of data manipulation?
+
+## Grouped operations
+
+So far, we have primarily learned how to manipulate data frames. 
+
+The `dplyr` package becomes really powerful when we introduce the `group_by` function
+
+`group_by` breaks down a dataset into specified groups of rows. When you then apply the verbs above on the resulting object they’ll be automatically applied "by group".
+
+Use in conjunction with `mutate` (to add existing rows to your data frame) or `summarise` (to create a new data frame)
+
+## Common `mutate`/`summarise` options
+
+- `mean`: mean within groups
+- `sum`: sum within groups
+- `sd`: standard deviation within groups
+- `max`: max within groups
+- `n()`: number in each group
+- `first`: first in group
+- `last`: last in group
+- `nth(n = 3)`: nth in group (3rd here)
+
+## `group_by` in action I
+
+Which ministry has the largest expenses?
+
+```{r}
+df %>% filter(udgift >= 0) %>% group_by(paragraf) %>% 
+  summarise(totale.udgifter = sum(udgift, na.rm = TRUE)) %>% 
+  arrange(-totale.udgifter)
+```
+
+## `group_by` in action II
+
+Add `totale.udgifter` to the existing data frame
+
+```{r}
+df %>% filter(udgift >= 0) %>% group_by(paragraf) %>% 
+  mutate(totale.udgifter = sum(udgift, na.rm = TRUE)) %>% 
+  select(aar, udgift, totale.udgifter)
+```
+
+## `group_by` in action III
+
+You can group by several variables
+
+```{r}
+df %>% filter(udgift >= 0) %>% group_by(aar, paragraf) %>% 
+  summarise(totale.udgifter = sum(udgift, na.rm = TRUE)) %>% 
+  arrange(-totale.udgifter)
+```
+
+## `group_by` in action IV
+
+You can group by several variables
+
+```{r}
+df %>% filter(udgift >= 0) %>% group_by(paragraf, hovedomrode) %>% 
+  summarise(totale.udgifter = sum(udgift, na.rm = TRUE)) %>% 
+  arrange(-totale.udgifter)
+```
+
+## Merging data sets
+
+Merging two data sets can be tricky and depends on your needs. It's important to think about what you want before joining. 
+
+<div class="centered">
+![](figures/joins.png)
+</div>
+
+## Superhero example
+
+[link](https://stat545-ubc.github.io/bit001_dplyr-cheatsheet.html)
+
+```{r}
+superheroes = c("    name, alignment, gender,         publisher",
+    " Magneto,       bad,   male,            Marvel",
+    "   Storm,      good, female,            Marvel",
+    "Mystique,       bad, female,            Marvel",
+    "  Batman,      good,   male,                DC",
+    "   Joker,       bad,   male,                DC",
+    "Catwoman,       bad, female,                DC",
+    " Hellboy,      good,   male, Dark Horse Comics")
+
+superheroes = read.csv(text = superheroes, strip.white = TRUE)
+head(superheroes)
+```
+
+## Publishers
+
+```{r}
+publishers = c("publisher, yr_founded",
+    "       DC,       1934",
+    "   Marvel,       1939",
+    "    Image,       1992")
+publishers = read.csv(text = publishers, strip.white = TRUE)
+head(publishers)
+```
+
+## Inner join
+
+```{r}
+ijsp = inner_join(superheroes, publishers)
+ijsp
+```
+
+## Left join
+
+```{r}
+ljsp = left_join(superheroes, publishers)
+ljsp
+```
+
+## Merging different names
+
+```{r}
+superheroes = mutate(superheroes,
+                seblikes = (publisher=="Marvel"))
+publishers = mutate(publishers,
+                    seb = (publisher == "Marvel"))
+ij2 = inner_join(superheroes,publishers)
+ij2
+```
+
+## Merging different names
+
+```{r}
+ij2 = inner_join(superheroes,publishers,
+                    by=c("publisher"="publisher",
+                            "seblikes"="seb"))
+ij2
+```
+
+---
+
+\LARGE Iteration
+
+
+
