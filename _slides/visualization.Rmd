@@ -382,7 +382,39 @@ ggsave(plot = p, file = "figures/polarization.pdf",
 
 The output can be seen [here](xxx).
 
-## Another example 
+## Visualizing Polls
+
+How do you visualize polls?
+
+New polls generate a lot of news stories
+
+But much of it is probably noise 
+
+How to deal with this visually?
+
+## Berlingske
+
+![](figures/berlingske.png)
+
+## Alternative 
+
+A poll is not really a number 
+
+It's a \alert{distribution}
+
+Usually, that distribution is normal
+
+So let's draw the distribution
+
+## Read data 
+
+```{r}
+library("readr")
+df = read_csv("")
+
+```
+
+## Steph Curry
 
 [Stephen Curry’s 3-Point Record in Context: Off the Charts](http://www.nytimes.com/interactive/2016/04/16/upshot/stephen-curry-golden-state-warriors-3-pointers.html?smid=fb-nytimes&smtyp=cur)
 
@@ -435,5 +467,4 @@ There are many useful packages for making maps in R
 - ``ggcounty``: generate United States county maps
 - ``ggmap``: extends ``ggplot2`` for maps
 - ``mapDK``: maps of Denmark
-
 
