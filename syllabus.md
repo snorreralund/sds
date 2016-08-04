@@ -18,9 +18,9 @@ A tentative syllabus, subject to change, is below.
 |Aug 11| 14-16 | Exercises + Brainstorming  |  |
 |Aug 12| 9-12 |  Big Data in Economics |  |
 |Aug 12| 14-16 | Reproducible Research |  |
-|Aug 15| 9-12 |  Statistical Learning (I) |  |
-|Aug 15| 14-16 | Statistical Learning (II) |  |
-|Aug 16| 9-12 |  Statistical Learning (III) |  |
+|Aug 15| 9-12 |  Observational Data & Causation |  |
+|Aug 15| 14-16 | Prediction & Learning (I) |  |
+|Aug 16| 9-12 |  Prediction & Learning (II) |  |
 |Aug 16| 14-16 | Text as Data |  |
 |Aug 17| 9-12 |  Privacy |  |
 |Aug 18| 9-12 |  Buffer |  |
