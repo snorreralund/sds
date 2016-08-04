@@ -83,7 +83,19 @@ Below are some interesting academic papers using data scraped from online source
 
 ### August 12
 
-*Keywords:* Reproducible Research.
+*Keywords:* Big Data, Reproducible Research.
+
+**Required**
+
+- John Gerring. 2012. Measurements. Chapter 7 in Social Science Methodology, 2. Ed., Cambridge University Press. ((*bad*) copies will be provided)
+
+- Christine L. Borgman. Provocations, What Are Data and Data Scholarship in the Social Science. Chapters 1,2 and 6 in *Big Data, Little Data, No Data*. MIT Press 2015. (copies will be provided).
+
+- Einav and Levin: Economics in the Age of Big Data. *Science*. 2013. [Link](http://www.sciencemag.org/content/346/6210/1243089.full.pdf?keytype=ref&siteid=sci&ijkey=Jj7wCy7hhth4M)
+
+- Edelman, Benjamin. 2012. "[Using internet data for economic research](http://www.jstor.org/stable/41495310)." *The Journal of Economic Perspectives*, 26.2: 189-206.
+
+- Anderson, Chris. 2008. "[The end of theory: The data deluge makes the scientific method obsolete](http://www.uvm.edu/~cmplxsys/wordpress/wp-content/uploads/reading-group/pdfs/2008/anderson2008.pdf)." *Wired*, 16-07.
 
 Read one of the following
 
@@ -92,3 +104,7 @@ Read one of the following
 - Rainey, Carlisle. 2015. "[Git for Political Science](https://github.com/carlislerainey/git-for-political-science)".
 
 - Wickham, Hadley. 2015. "[Git and GitHub](http://r-pkgs.had.co.nz/git.html)".
+
+**Background**
+
+- Lazer, David, et al. 2014. "[The parable of Google Flu: traps in big data analysis](http://gking.harvard.edu/files/gking/files/0314policyforumff.pdf)." *Science*, 343.14.
