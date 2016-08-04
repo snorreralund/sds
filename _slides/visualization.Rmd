@@ -205,13 +205,18 @@ First we need to load some data into `R` ([link here](https://raw.githubusercont
 
 ```{r}
 library("readr")
-df = read_csv("https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pages/data/polarization.csv")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "sebastianbarfort/sds_summer/"
+branch = "gh-pages/"
+link = "data/polarization.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
 names(df)
 ```
 
 ## Inspecting the data 
 
-```{r}
+```{r, echo = FALSE}
 names(df)
 knitr::kable(head(df))
 ```
@@ -324,8 +329,9 @@ p
 p = p + 
   scale_x_continuous(
     expand = c(0,0), breaks = c(-8, 0, 8),
-    labels= c("Consistently\nliberal", "Mixed",
-         "Consistently\nconservative")) +
+    labels= c("Consistently\nliberal", 
+              "Mixed",
+              "Consistently\nconservative")) +
   scale_y_continuous(
     expand = c(0,0), limits = c(0, 12))
 ```
@@ -345,15 +351,16 @@ p = p + facet_wrap(~ year, ncol = 2,
 
 ## 
 
-```{r}
+```{r, echo = FALSE}
 p
 ```
 
 ## 6. Axis title
 
 ```{r}
-p = p + labs(x = NULL, y = NULL,
-  title = "Polarization, 1994-2014")
+p = p + labs(x = NULL, 
+             y = NULL,
+             title = "Polarization, 1994-2014")
 ```
 
 
@@ -367,9 +374,10 @@ p = p + theme_minimal()
 ## 8. Legend
 
 ```{r}
-p = p + theme(legend.position=c(0.75, 0.1)) +
-  theme(legend.direction="horizontal") +
-  theme(axis.text.y=element_blank())
+p = p + 
+  theme(legend.position = c(0.75, 0.1)) +
+  theme(legend.direction = "horizontal") +
+  theme(axis.text.y = element_blank())
 ```
 
 ```{r, echo = FALSE}
@@ -379,6 +387,7 @@ ggsave(plot = p, file = "figures/polarization.pdf",
 
 ## Output
 
+\centering
 The output can be seen [here](xxx).
 
 ## Visualizing Polls
@@ -409,8 +418,20 @@ So let's draw the distribution
 
 ```{r}
 library("readr")
-df = read_csv("https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pages/data/polls_tidy.csv")
-names(df)
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "sebastianbarfort/sds_summer/"
+branch = "gh-pages/"
+link = "data/polls_tidy.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
+```
+
+##
+
+### First five rows/columns
+
+```{r, echo = FALSE}
+knitr::kable(df[1:5, 1:5])
 ```
 
 ```{r, echo = FALSE}
@@ -430,6 +451,11 @@ What do you think the variables `predicted` and `density` mean?
 
 ```{r}
 p = ggplot(df, aes(x = predicted, y = density))
+```
+
+## 
+
+```{r}
 p + geom_line()
 ```
 
@@ -446,8 +472,11 @@ p + geom_line()
 ```{r}
 p = ggplot(df, aes(x = predicted, y = density, 
                    group = group, color = Parti))
-p = p + geom_line() + 
-  facet_grid(party.ord ~ ., scales = "free_y", switch = "y") 
+p = p + 
+  geom_line() + 
+  facet_grid(party.ord ~ ., 
+             scales = "free_y", 
+             switch = "y") 
 ```
 
 ## 
@@ -462,10 +491,11 @@ p
 df.1 = subset(df, date != max(date))
 df.2 = subset(df, date == max(date))
 p = ggplot()
-p = p + geom_line(data = df.1, 
-              aes(x = predicted, y = density, 
-                  group = group),
-              color = "grey50", alpha = .25) + 
+p = p + 
+  geom_line(data = df.1, 
+            aes(x = predicted, y = density, 
+                group = group),
+            color = "grey50", alpha = .25) + 
   facet_grid(party.ord ~ ., 
              scales = "free_y", switch = "y") 
 ```
@@ -512,7 +542,8 @@ ggsave(plot = p, file = "figures/polls.pdf",
 
 ## Output
 
-The output can be seen [here](xxx).
+\centering
+The output can be seen [here]().
 
 
 ## Steph Curry
@@ -529,7 +560,12 @@ Data [here](https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pag
 
 ```{r}
 library("readr")
-df = read_csv("https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pages/data/armslist.csv")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "sebastianbarfort/sds_summer/"
+branch = "gh-pages/"
+link = "data/armslist.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
 names(df)
 ```
 
