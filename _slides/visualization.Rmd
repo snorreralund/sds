@@ -339,7 +339,8 @@ p
 ## 5. Subset by year 
 
 ```{r}
-p = p + facet_wrap(~ year, ncol = 2, scales = "free_x")
+p = p + facet_wrap(~ year, ncol = 2, 
+                   scales = "free_x")
 ```
 
 ## 
@@ -351,10 +352,8 @@ p
 ## 6. Axis title
 
 ```{r}
-p = p + labs(
-  x=NULL, y=NULL,
-  title =
-"Political Polarization, 1994-2014 (General Population)")
+p = p + labs(x = NULL, y = NULL,
+  title = "Polarization, 1994-2014")
 ```
 
 
@@ -410,9 +409,111 @@ So let's draw the distribution
 
 ```{r}
 library("readr")
-df = read_csv("")
-
+df = read_csv("https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pages/data/polls_tidy.csv")
+names(df)
 ```
+
+```{r, echo = FALSE}
+library("dplyr")
+df = df %>% 
+  mutate(party.ord = toupper(Parti),
+         party.ord = reorder(party.ord, -predicted))
+```
+
+## Your turn
+
+### Inspect the dataset 
+
+What do you think the variables `predicted` and `density` mean?
+
+## Visualization
+
+```{r}
+p = ggplot(df, aes(x = predicted, y = density))
+p + geom_line()
+```
+
+## 
+
+```{r}
+p = ggplot(df, aes(x = predicted, y = density, 
+                   group = group, color = Parti))
+p + geom_line()
+```
+
+## 
+
+```{r}
+p = ggplot(df, aes(x = predicted, y = density, 
+                   group = group, color = Parti))
+p = p + geom_line() + 
+  facet_grid(party.ord ~ ., scales = "free_y", switch = "y") 
+```
+
+## 
+
+```{r, echo = FALSE}
+p
+```
+
+## New strategy
+
+```{r}
+df.1 = subset(df, date != max(date))
+df.2 = subset(df, date == max(date))
+p = ggplot()
+p = p + geom_line(data = df.1, 
+              aes(x = predicted, y = density, 
+                  group = group),
+              color = "grey50", alpha = .25) + 
+  facet_grid(party.ord ~ ., 
+             scales = "free_y", switch = "y") 
+```
+
+## 
+
+```{r, echo = FALSE}
+p
+```
+
+## Add latest poll
+
+```{r}
+p = p + geom_line(data = df.2, 
+              aes(x = predicted, y = density, 
+                  group = group), 
+              colour = "red", size = 1)
+```
+
+## 
+
+```{r, echo = FALSE}
+p
+```
+
+## Details I
+
+```{r}
+p = p + scale_x_continuous(
+  breaks = scales::pretty_breaks(10)) +
+  theme_minimal() +
+  theme(strip.text.y = element_text(angle = 180, 
+                                    face = "bold", 
+                                    vjust = 0.75,
+                                    hjust = 1),
+        axis.text.y = element_blank()) +
+  labs(y = NULL, x = NULL)
+```
+
+```{r, echo = FALSE}
+ggsave(plot = p, file = "figures/polls.pdf",
+       width = 8, height = 6)
+```
+
+## Output
+
+The output can be seen [here](xxx).
+
 
 ## Steph Curry
 
