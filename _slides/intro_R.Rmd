@@ -12,7 +12,7 @@ output:
     incremental: no
     fig_width: 7
     fig_height: 6
-    fig_caption: true
+    fig_caption: false
     includes:
       in_header: header.tex
 fontsize: 10pt

@@ -48,6 +48,104 @@ knitr::opts_chunk$set(
 
 ##
 
-![](/figures/dilbert2.jpg)
+![](figures/dilbert2.jpg)
 
+## Why use Markdown?
+
+Easy to learn and use.
+
+Focus on __content__, rather than __coding__ and debugging __errors__.
+
+It's flexible. Markdown was created to simplify HTML, but with the right tools, your Markdown files can easily be converted to many different formats!
+
+## What is Markdown?
+
+Markdown is a particular type of markup language.
+
+Markup languages are designed produce documents from plain text.
+
+Some of you may be familiar with _LaTeX_. This is another (less human friendly) markup language for creating pdf documents.
+
+_LaTeX_ gives you much greater control, but it is restricted to pdf and has a __much__ greater learning curve.
+
+markdown was created for the web (you know it if you use Github, Stackoverflow, etc.)
+
+## What is `rmarkdown`?
+
+`rmarkdown` is a new package from RStudio that merges a lot of technologies in an exciting way.
+
+In fact, in RStudio now, you integrate R code into your Markdown document and render as HTML/pdf/Word in the click of a button! 
+
+## Markdown Basics
+
+## Example
+
+Suppose we want to create a nested list
+
+* fruits
+    - apples
+        - macintosh
+        - red delicious
+    - pears 
+    - peaches
+* vegetables
+    - broccoli
+    - chard
+    
+## Latex
+
+```latex
+\begin{itemize}      
+\item fruits         
+\begin{itemize}       
+\item apples          
+\begin{itemize}     
+  \item macintosh     
+  \item red delicious 
+  \end{itemize}       
+\item pears           
+\item peaches         
+\end{itemize}         
+\item vegetables        
+  \begin{itemize}       
+    \item brocolli        
+    \item chard           
+  \end{itemize}         
+\end{itemize}  
+```    
+    
+## HTML
+
+```html
+    <ul>
+        <li>fruits
+        <ul>
+            <li>apples
+            <ul>
+                <li>macintosh</li>
+                <li>red delicious</li>
+            </ul></li>
+            <li>pears</li>
+            <li>peaches</li>
+        </ul></li>
+        <li>vegetables
+        <ul>
+            <li>brocolli</li>
+            <li>chard</li>
+        </ul></li>
+    </ul>    
+```  
+    
+## Markdown
+
+    * fruits
+        - apples
+            - macintosh
+            - red delicious
+        - pears 
+        - peaches
+    * vegetables
+        - broccoli
+        - chard
+        
 
