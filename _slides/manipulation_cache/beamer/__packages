@@ -2,3 +2,6 @@ base
 readr
 tidyr
 dplyr
+purrr
+ggplot2
+RcppRoll

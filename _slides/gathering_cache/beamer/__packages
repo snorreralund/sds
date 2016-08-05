@@ -3,3 +3,6 @@ xml2
 rvest
 stringr
 plyr
+purrr
+httr
+jsonlite

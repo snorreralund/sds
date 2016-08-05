@@ -74,6 +74,11 @@ knitr::opts_chunk$set(
 2. Graphs should be self explanatory
 3. A graph is a narrative - should convey key point(s)
   
+## 
+
+\centering
+![](figures/dilbert1.jpg)
+  
 ## Three basic principles
 
 ### Schwabish (2014)

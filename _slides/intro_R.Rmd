@@ -104,6 +104,11 @@ Be lazy (write functions)
 
 Think before you code
 
+Code is a medium of communication
+
+1. Between you and the computer 
+2. Between you and other people (or future you)
+
 ## Two types of constraints
 
 ![](figures/constraints.png)
