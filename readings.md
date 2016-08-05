@@ -31,7 +31,7 @@ posts
 
 - Grolemund, Garrett and Hadley Wickham. 2016. "[R for Data Science](http://r4ds.had.co.nz/)". Read chapters 3, 4 and 9. Browse chapter 15.
 
-- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 4.[^rnote]
+- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 4.1-4.3.[^rnote]
 
 [^rnote]: You will notice that Kosuke Imai uses the base `R` package much more frequently than we do. We will instead write `R` code that follows the "tidyverse" approach to data analysis. We do not expect you to repeat every line of code in the chapter, but you should have a rough idea of what each line of code does. 
 
