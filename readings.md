@@ -31,6 +31,10 @@ posts
 
 - Grolemund, Garrett and Hadley Wickham. 2016. "[R for Data Science](http://r4ds.had.co.nz/)". Read chapters 3, 4 and 9. Browse chapter 15.
 
+- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 4.[^rnote]
+
+[^rnote]: You will notice that Kosuke Imai uses the base `R` package much more frequently than we do. We will instead write `R` code that follows the "tidyverse" approach to data analysis. We do not expect you to repeat every line of code in the chapter, but you should have a rough idea of what each line of code does. 
+
 Browse the following
 
 - Schwabish, Jonathan A. 2014. "[An Economist's Guide to Visualizing Data](https://www.aeaweb.org/articles.php?doi=10.1257/jep.28.1.209)". *Journal of Economic Perspectives*, 28(1): 209-34.
@@ -128,3 +132,6 @@ Read one of the following
 - Alessandro Acquisti. 2015. The Economics and Behavioral Economics of Privacy. Chapter 3 in *Privacy, Big Data, and the Public Good: Frameworks for Engagement* (eds. Julia Lane, Victoria Stodden, Stefan Bender, Helen Nissenbaum). Cambridge University Press. 
 
 - Fabian Neuhaus & Timothy Webmoor. 2012. "[AGILE ETHICS FOR MASSIFIED RESEARCH AND VISUALIZATION](http://www.tandfonline.com/doi/abs/10.1080/1369118X.2011.616519)." Information, Communication & Society 15:1, 43-65
+
+##### Footnotes
+
