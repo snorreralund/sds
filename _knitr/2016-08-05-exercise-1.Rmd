@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "Exercise 1: Hollywood's gender divide"
+categories: posts
+---
+
+In this exercise You will work with the underlying data from this article on "[Hollywood's gender divide and its effect on films](http://polygraph.cool/bechdel/)".
+
+The article visualizes movie data based on whether the movie passes the Bechdel test. From the beginning of the article:
+  
+> To pass, films need to satisfy three requirements:
+1. It has at least two women in it
+2. Who talk to each other, about
+3. Something besides a man
+
+I have provided some similar data on the [github page](https://github.com/sebastianbarfort/sds_summer/tree/gh-pages/data) (if you want to see how these data are created check out [this page](https://github.com/shabbychef/imdb_mirror/blob/master/bechdel.Rmd)). 
+
+You load the data as follows
+
+```{r, message = FALSE, tidy=FALSE}
+library("readr")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "sebastianbarfort/sds_summer/"
+branch = "gh-pages/"
+link = "data/bechdel.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
+```
+
+The names of the data are as follows
+
+```{r}
+names(df)
+```
+
+Most of the names are self explanatory, but some of them are not.
+
+- `votes`: Count of votes on [IMDB](http://www.imdb.com/)
+- `vote_mean`: Mean rating on [IMDB](http://www.imdb.com/)
+- `role`: Indicator for actor, director or writer
+- `count`: Actor count
+- `count_male`: Count of male actors
+- `count_female`: Count of female actors
+- `bechdel_test`: Count of how many of the Bechdel requirements the film passes
+
+### Questions
+
+1. Read the article and discuss in groups whether you find the argument and visualizations convincing. 
+2. Generate the following new variables
+- `mean_male`: measure the fraction of male actors in the movie
+- `mean_female`: measure the fraction of female actors
+- `status`: generate a variable that takes three values (`all male`, `mixed` or `all female` based on the gender composition of the cast)
+3. **Grouped operations**: Discuss how best to investigate how the Bechdel score varies by the gender of the director/writer. Write `R`
+code to carry out your ideas and visualize the results. 
+4. Think about other interesting relationships you could investigate. For example, how does ratings, gross earnings and Bechdel score relate to each other? Are the results you found previously related to age of the director instead of gender? Discuss and visualize. 
+
+
+
