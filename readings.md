@@ -33,7 +33,7 @@ posts
 
 - Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 4.1-4.3.[^rnote]
 
-[^rnote]: You will notice that Kosuke Imai uses the base `R` package much more frequently than we do. We will instead write `R` code that follows the "tidyverse" approach to data analysis. We do not expect you to repeat every line of code in the chapter, but you should have a rough idea of what each line of code does. 
+[^rnote]: You will notice that Kosuke Imai uses the base `R` package much more frequently than we do. We will instead write `R` code that follows the "tidyverse" approach to data analysis. We do not expect you to repeat every line of code in the chapter, but you should have a rough idea of what each line of code does.
 
 Browse the following
 
@@ -63,13 +63,13 @@ Below are links to some interesting videos describing how companies such as the 
 
 **Required**
 
-- Edelman, Benjamin. 2012. "[Using internet data for economic research](http://www.jstor.org/stable/41495310)." *The Journal of Economic Perspectives*, 26.2: 189-206.
-
 - Wickham, Hadley. 2014. "[rvest: easy web scraping with R](http://blog.rstudio.org/2014/11/24/rvest-easy-web-scraping-with-r/)". RStudio Blog.
 
 - Wickham, Hadley. 2010. "[stringr: modern, consistent string processing](https://journal.r-project.org/archive/2010-2/RJournal_2010-2_Wickham.pdf). The R Journal. 2(2): 38-40.
 
 - Shiab, Nael. 2015. "[On the Ethics of Web Scraping and Data Journalism](http://gijn.org/2015/08/12/on-the-ethics-of-web-scraping-and-data-journalism/)". Global Investigative Journalism Network.
+
+- The Economist. 2016. "[What APIs are](http://www.economist.com/blogs/economist-explains/2016/05/economist-explains-20?fsrc=scn/tw/te/bl/ed/)."
 
 **Inspiration**
 
@@ -129,9 +129,8 @@ Read one of the following
 
 **Background**
 
-- Alessandro Acquisti. 2015. The Economics and Behavioral Economics of Privacy. Chapter 3 in *Privacy, Big Data, and the Public Good: Frameworks for Engagement* (eds. Julia Lane, Victoria Stodden, Stefan Bender, Helen Nissenbaum). Cambridge University Press. 
+- Alessandro Acquisti. 2015. The Economics and Behavioral Economics of Privacy. Chapter 3 in *Privacy, Big Data, and the Public Good: Frameworks for Engagement* (eds. Julia Lane, Victoria Stodden, Stefan Bender, Helen Nissenbaum). Cambridge University Press.
 
 - Fabian Neuhaus & Timothy Webmoor. 2012. "[AGILE ETHICS FOR MASSIFIED RESEARCH AND VISUALIZATION](http://www.tandfonline.com/doi/abs/10.1080/1369118X.2011.616519)." Information, Communication & Society 15:1, 43-65
 
 ##### Footnotes
-
