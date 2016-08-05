@@ -31,7 +31,7 @@ posts
 
 - Grolemund, Garrett and Hadley Wickham. 2016. "[R for Data Science](http://r4ds.had.co.nz/)". Read chapters 3, 4 and 9. Browse chapter 15.
 
-- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 4 part 1-3.[^rnote]
+- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 4 section 1-3.[^rnote]
 
 [^rnote]: You will notice that Kosuke Imai uses the base `R` package much more frequently than we do. We will instead write `R` code that follows the "tidyverse" approach to data analysis. We do not expect you to repeat every line of code in the chapter, but you should have a rough idea of what each line of code does.
 
@@ -85,6 +85,8 @@ Below are some interesting academic papers using data scraped from online source
 
 - Cavallo, Alberto. "[Scraped data and sticky prices](http://www.aeaweb.org/aea/2011conference/program/retrieve.php?pdfid=403)". No. w21490. National Bureau of Economic Research, 2015.
 
+- Bond, Robert M., et al. 2012. "[A 61-million-person experiment in social influence and political mobilization](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3834737/)." *Nature*, 489.7415: 295-298.
+
 ### August 12
 
 *Keywords:* Big Data, Reproducible Research.
@@ -112,6 +114,52 @@ Read one of the following
 **Background**
 
 - Lazer, David, et al. 2014. "[The parable of Google Flu: traps in big data analysis](http://gking.harvard.edu/files/gking/files/0314policyforumff.pdf)." *Science*, 343.14.
+
+### August 15
+
+*Keywords*: Observational data, Causation.
+
+- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 2 and section 4.3.
+
+- Samii, Cyrus. 2016. ["Causal Empiricism in Quantitative Research"](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2776850). *Journal of Politics* 78(3):941–955.
+
+*Keywords*: Prediction, Statistical Learning
+
+- Kleinberg, Jon, et al. "[Prediction policy problems](http://www.cs.cornell.edu/home/kleinber/aer15-prediction.pdf)." *American Economic Review*, 105.5 (2015): 491-495.
+
+- Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2001. "[Introduction to statistical learning](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)". Vol. 1. Springer, Berlin: Springer series in statistics. (pages: 15-42, 175-184, 214-227)
+
+- Varian. Hal. 2014. "[Big Data: New Tricks for Econometrics]((http://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.3)). *Journal of Economic Perspectives*, 28.2: 3-27.
+
+**Inspiration**
+
+- Choi, Hyunyoung, and Hal Varian. "[Predicting initial claims for unemployment benefits](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.549.7927&rep=rep1&type=pdf)." Google working paper.
+
+- Jonas, Zachery and Fridolin Linder. 2016. "[Exploratory Data Analysis using Random Forests](http://zmjones.com/static/papers/rfss_manuscript.pdf)".
+
+- Anderson, Chris. 2008. "[The end of theory: The data deluge makes the scientific method obsolete](http://www.uvm.edu/~cmplxsys/wordpress/wp-content/uploads/reading-group/pdfs/2008/anderson2008.pdf)." *Wired*, 16-07.
+
+- Ginsberg, Jeremy, et al. 2009. "[Detecting influenza epidemics using search engine query data](http://www.nature.com/nature/journal/v457/n7232/full/nature07634.html)." *Nature*, 457.7232: 1012-1014.
+
+- Broniatowski, David Andre, Michael J. Paul, and Mark Dredze. 2014. "[Twitter: big data opportunities](http://cs.jhu.edu/~mpaul/files/science_letter_twitter.pdf)." *Inform*, 49: 255.
+
+
+### August 16
+
+*Keywords*: Unsupervised Learning.
+
+- Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2001. "[Introduction to statistical learning](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)". Vol. 1. Springer, Berlin: Springer series in statistics. (pages: 373-399).
+
+*Keywords*: Text Data.
+
+- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 5 section 1-2.
+
+- Grimmer, Justin, and Brandon M. Stewart. 2013. "[Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://pan.oxfordjournals.org/content/early/2013/01/21/pan.mps028.short)." *Political Analysis*, 21.3: 267-297.
+
+**Inspiration**
+
+- King, G., Pan, J., & Roberts, M. E. 2013. [How censorship in China allows government criticism but silences collective expression](http://gking.harvard.edu/files/censored.pdf). *American Political Science Review*, 107(02), 326-343.
+
 
 ### August 17
 
