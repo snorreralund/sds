@@ -46,14 +46,6 @@ knitr::opts_chunk$set(
                warning=FALSE)
 ```
 
-## 
-
-- `dplyr`
-- `tidyr`
-- `purrr`
-- `tidytext`
-- `stringr`
-
 ## Intro 
 
 > "Herein lies the dirty secret about most data scientists' work – it's more data munging than deep learning. The best minds of my generation are deleting commas from log files, and that makes me sad. A Ph.D. is a terrible thing to waste."
@@ -394,10 +386,12 @@ knitr::kable(tb3.wide[1:5, 1:8])
 
 Once you have your data stored in tidy form, you can easily apply a \alert{split-apply-combine strategy}, where you break up a big problem into manageable pieces, opereate on each piece independently and then put the pieces back together
 
+\centering
 ![](figures/split.png)
 
 ## Split-Apply-Combine
 
+\centering
 ![](figures/split-apply-combine.png)
 
 ## The `dplyr` package
@@ -1048,7 +1042,12 @@ A \alert{regular expression} is a pattern that describes a specific set of strin
 
 Regular expressions typically specify characters (or character classes) to seek out, possibly with information about repeats and location within the string. This is accomplished with the help of metacharacters that have specific meaning: `$ * + . ? [ ] ^ { } | ( ) \`
 
-I won't lie: they can be difficult 
+They can be difficult 
+
+##
+
+\centering
+![](figures/xkcdregex.jpg)
 
 ## Quantifiers
 
@@ -1064,8 +1063,8 @@ Quantifiers specify how many repetitions of the pattern
 ## Example
 
 ```{r}
-strings = c("a", "ab", "acb", "accb", "acccb", "accccb")
-strings
+strings = c("a", "ab", "acb", "accb", 
+            "acccb", "accccb")
 grep("ac*b", strings, value = TRUE)
 grep("ac+b", strings, value = TRUE)
 grep("ac?b", strings, value = TRUE)
@@ -1124,5 +1123,85 @@ Character classes allows to specify entire classes of characters, such as number
 - `\s`: space, ` `.
 - `\S`: not space.
 - `[:punct:]`: punctuation characters, ! " # $ % & ’ ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~.
+
+## The `stringr` package
+
+The most consistent way of doing string manipulation in `R` is by using the `stringr` package. 
+
+```{r}
+library("stringr")
+```
+
+All functions in `stringr` start with `str_`.
+
+All functions are pipeable! 
+
+## Useful functions
+
+- `str_length`: length of string 
+- `str_c`: combine string
+- `str_sub`: subset string
+- `str_to_lower`: string to lower cases
+
+## Matching with regular expressions
+
+### Detect matches
+
+```{r}
+x = c("apple", "banana", "pear", "213")
+x %>% str_detect("e")
+x %>% str_detect("[0-9]")
+x %>% str_detect("e.r")
+```
+
+## 
+
+### Extract matches
+
+```{r}
+x %>% str_extract("apple|[0-9]*")
+x %>% str_extract("a.*")
+```
+
+##
+
+### If the string contains more than more element
+
+```{r}
+xx = c("apple 123", "banana", "pear", "213")
+xx %>% str_extract("apple|[0-9]*")
+xx %>% str_extract("a.*")
+```
+
+##
+
+```{r}
+xx %>% str_extract_all("apple|[0-9].")
+```
+
+## Replacing
+
+### Replacing
+
+```{r}
+xx %>% str_replace("[0-9]", "\\?")
+xx %>% str_replace_all("[0-9]", "\\?")
+xx %>% str_replace_all(c("1" = "one", "2" = "x"))
+```
+
+## Split vector
+
+### Splitting
+
+```{r}
+xx %>% str_split("a")
+```
+
+##
+
+```{r}
+xx %>% str_split("a", n = 2)
+```
+
 
 

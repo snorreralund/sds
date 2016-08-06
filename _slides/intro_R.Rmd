@@ -109,8 +109,14 @@ Code is a medium of communication
 1. Between you and the computer 
 2. Between you and other people (or future you)
 
+##
+
+\centering
+![](figures/future_self.png)
+
 ## Two types of constraints
 
+\centering
 ![](figures/constraints.png)
 
 _ _ _

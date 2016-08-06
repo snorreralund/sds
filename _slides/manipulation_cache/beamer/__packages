@@ -5,3 +5,4 @@ dplyr
 purrr
 ggplot2
 RcppRoll
+stringr
