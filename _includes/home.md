@@ -7,7 +7,6 @@ University of Copenhagen<br/>
 Instructors: <a href="http://www.econ.ku.dk/ddl/">David Dreyer Lassen</a> & <a href="http://sebastianbarfort.github.io/">Sebastian Barfort</a><br/>
 Date: August 8 - August 26, 2016 <br/>
 Time: Lectures: 9-12, Exercises: 14-16  <br/>
-Location: TBA <br/>
 </center>
 <br/>
 
