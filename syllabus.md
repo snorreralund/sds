@@ -9,7 +9,7 @@ A tentative syllabus, subject to change, is below.
 |Date|Time|Keywords|Slides/Exercises|
 |:----|:-----|:-----:|:-----|
 |Aug 8| 9-12 | Introduction to SDS | [Introduction](https://sebastianbarfort.github.io/sds_summer/slides/intro.pdf)
-|Aug 8| 13-15 | Introduction to R | [Introduction to R](https://sebastianbarfort.github.io/sds_summer/slides/intro_R.pdf)
+|Aug 8| 13-15 | Introduction to R | [Introduction to R](https://sebastianbarfort.github.io/sds_summer/slides/intro_R.pdf) ([code](https://sebastianbarfort.github.io/sds_summer/code/intro_R.R))
 |Aug 9| 9-12 | Data Visualization |  
 |Aug 9| 13-15 | Data Manipulation (I) |  
 |Aug 10| 9-12 | Data Manipulation (II) |  

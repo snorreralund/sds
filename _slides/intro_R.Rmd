@@ -73,6 +73,11 @@ Used by New York Times, Facebook, Google, Twitter...
 
 `R` works for small/medium sized data 
 
+## Workflow
+
+\centering
+![](figures/r4ds_data-science.png)
+
 ## Working with R 
 
 ### Today
