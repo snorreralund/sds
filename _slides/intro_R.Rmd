@@ -170,6 +170,21 @@ x * 2
 y * 2
 ```
 
+## Living in R
+
+There is no agreement about how to name things, so you'll likely see a mixture of snake_case and CamelCase, based on the preferences of the person who originally wrote some function
+
+Figure out where you are 
+
+```{r}
+getwd()
+```
+
+Like in [Unix](https://en.wikipedia.org/wiki/Unix), in `R` you are always in a directory
+
+Your actions are all relative to that directory
+
+
 ## Object fundamentals
 
 Examples of `R` objects 
