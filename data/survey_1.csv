@@ -1,0 +1,55 @@
+#,"What is your age?","What is your gender?","What operating system do you use?","Please rate your computing skills on a scale from 1 (beginner) to 10 (expert)","Do you consider your computing skills to be","What is your field of study",Other,"Do you have R and RStudio installed on your computer?","Start Date (UTC)","Submit Date (UTC)","Network ID"
+b7bf230462232beb10960e730b7ed7c6,42,Male,"Mac OS X",10,"Above class average",Economics,,Yes,"2016-08-07 10:18:48","2016-08-07 10:19:45",6b3ace0af7
+841b7ea0b6f960b51f574e207b8d5ebf,25,Female,Windows,7,Average,Economics,,Yes,"2016-08-07 17:39:03","2016-08-07 17:39:58",d1e2db6499
+edc315c03093337308365442854b6c38,29,Male,"Mac OS X",4,Average,,Linguistics,Yes,"2016-08-08 08:12:50","2016-08-08 08:13:25",49d0dbc2f3
+447e5ae2453d4c9836a26ee9f9c91e67,26,Male,Windows,8,"Above class average",Economics,,Yes,"2016-08-08 08:30:13","2016-08-08 08:30:50",49d0dbc2f3
+2f55cf46b33539f16e895f13725edac6,24,,"Mac OS X",7,"Above class average",Economics,,Yes,"2016-08-08 08:30:19","2016-08-08 08:30:50",49d0dbc2f3
+b923067649560eedc8dd851510f0c1e5,25,Male,Windows,7,"Above class average","Political Science",,Yes,"2016-08-08 08:30:15","2016-08-08 08:30:54",49d0dbc2f3
+e68002da54fd851f47d3ba35e3a483ec,23,Male,Windows,4,"Below class average","Political Science",,Yes,"2016-08-08 08:28:50","2016-08-08 08:30:55",49d0dbc2f3
+efce5d6366d2b7a2e010f742d8fab80d,21,Male,Windows,4,"Below class average",Economics,,Yes,"2016-08-08 08:14:42","2016-08-08 08:30:58",49d0dbc2f3
+b85e198ad07ecede3ec5663a9bd38791,25,Female,Windows,3,"Below class average",Economics,,,"2016-08-08 08:30:18","2016-08-08 08:30:58",49d0dbc2f3
+85d19f7ca2c61a74ce810fdb8dadcda7,21,Female,"Mac OS X",6,Average,Economics,,Yes,"2016-08-08 08:30:32","2016-08-08 08:31:00",49d0dbc2f3
+698cb3f3d571c5f8e44372dd762ea4d2,22,Male,Windows,4,Average,Economics,,Yes,"2016-08-08 08:15:40","2016-08-08 08:31:03",49d0dbc2f3
+27406da981b341ccc31be9d5b2943bb4,26,Male,"Mac OS X",4,Average,Economics,,Yes,"2016-08-08 08:30:22","2016-08-08 08:31:04",49d0dbc2f3
+dca023b0fefa8d9b1b10081a5467341f,41,Male,"Mac OS X",8,"Above class average",Economics,,Yes,"2016-08-08 08:30:25","2016-08-08 08:31:11",49d0dbc2f3
+1b7ee7eb9130252a9109e1f50993c79b,24,Male,"Mac OS X",7,Average,Economics,,Yes,"2016-08-08 08:30:10","2016-08-08 08:31:13",f255fc7c0e
+3f95fac6eb61007d544e1c52b60abfbe,21,Female,"Mac OS X",7,Average,Economics,,Yes,"2016-08-08 08:30:12","2016-08-08 08:31:18",49d0dbc2f3
+619ca4cb5d4907c29d891e18726d3e84,21,Male,"Mac OS X",5,Average,Economics,,Yes,"2016-08-08 08:10:07","2016-08-08 08:31:21",49d0dbc2f3
+9fd8c6bdebf5076518c4ba5bb4909928,"21 ",Female,"Mac OS X",7,Average,Economics,,Yes,"2016-08-08 08:30:20","2016-08-08 08:31:22",49d0dbc2f3
+ebcc175211ae54876a3d0e363a85dfd2,24,Female,"Mac OS X",7,Average,Economics,,"No, haven't tried yet","2016-08-08 08:30:20","2016-08-08 08:31:29",49d0dbc2f3
+bc19629c75e80adabf16e6793fdc89be,25,Female,Windows,7,Average,Economics,,Yes,"2016-08-08 08:30:45","2016-08-08 08:31:33",49d0dbc2f3
+01e90466f43e3cf97173d9d71fc4c03c,27,Male,"Mac OS X",8,Average,Economics,,Yes,"2016-08-08 08:30:58","2016-08-08 08:31:44",49d0dbc2f3
+beb90598dd2104106621c0b1883b2583,23,Female,"Mac OS X",4,Average,Economics,,Yes,"2016-08-08 08:30:14","2016-08-08 08:31:45",49d0dbc2f3
+2cf62db8b7ef5638cf96aa7c85e8297f,24,Male,"Mac OS X",5,Average,Economics,,Yes,"2016-08-08 08:31:12","2016-08-08 08:31:51",49d0dbc2f3
+010d6b0442e87412e5a839adf83b5dec,23,Male,Windows,8,Average,,,Yes,"2016-08-08 08:31:24","2016-08-08 08:31:52",49d0dbc2f3
+2633c629601d3c2775262be8322ed57e,22,Male,"Mac OS X",7,Average,Economics,,Yes,"2016-08-08 08:31:12","2016-08-08 08:31:53",49d0dbc2f3
+ae2090b6561d00e7f0026aff566a757e,23,Male,Windows,5,Average,Economics,,Yes,"2016-08-08 08:30:21","2016-08-08 08:31:55",49d0dbc2f3
+88524d4dfbf31f3363858e3f8e51dcea,21,Female,"Mac OS X",,Average,Economics,,Yes,"2016-08-08 08:30:23","2016-08-08 08:31:55",49d0dbc2f3
+c6719aab88ccad4a8997a182f3399005,23,Male,"Mac OS X",1,Average,Sociology,,Yes,"2016-08-08 08:31:09","2016-08-08 08:31:56",49d0dbc2f3
+220584a4a86b468b876ad0a0f611692c,25,Female,"Mac OS X",6,Average,Sociology,,Yes,"2016-08-08 08:31:11","2016-08-08 08:31:57",49d0dbc2f3
+92b744ea5ace532b451789daa942bc27,21,Female,"Mac OS X",4,Average,Economics,,Yes,"2016-08-08 08:30:16","2016-08-08 08:31:58",49d0dbc2f3
+023ac694453a9ad7e7ff05e491577f23,24,Male,Windows,7,Average,Economics,,Yes,"2016-08-08 08:31:11","2016-08-08 08:31:58",49d0dbc2f3
+9c984b3bb1c0018b7c897396c64a5ce2,24,Female,Windows,7,Average,Economics,,Yes,"2016-08-08 08:30:27","2016-08-08 08:32:03",49d0dbc2f3
+3df9446eb91157d7935d6a8643a15381,23,Female,Windows,6,Average,Economics,,Yes,"2016-08-08 08:31:03","2016-08-08 08:32:05",49d0dbc2f3
+fd67c687cfa4d708338c726370d06730,29,Male,Windows,8,"Above class average",Economics,,Yes,"2016-08-08 08:31:06","2016-08-08 08:32:05",49d0dbc2f3
+997149efa89dc7100e8f6b3e1211333c,33,Male,Windows,2,"Below class average",Sociology,,Yes,"2016-08-08 08:30:56","2016-08-08 08:32:06",49d0dbc2f3
+5a9bfdd510de5479b09a95f2f67f61ac,24,Male,"Mac OS X",5,Average,Sociology,,Yes,"2016-08-08 08:31:15","2016-08-08 08:32:06",ebbdd9be45
+adcc8e8734701d3cfdb94fbe77750175,27,Male,Windows,5,Average,Economics,,Yes,"2016-08-08 08:31:10","2016-08-08 08:32:07",49d0dbc2f3
+4d83d3f3369b4b996112ee63f08cb009,26,Male,Windows,7,"Above class average",Economics,,Yes,"2016-08-08 08:31:28","2016-08-08 08:32:08",51681cf113
+e7ccd646e9733bdc31d476e8242f915e,23,Male,Windows,1,"Below class average",Economics,,Yes,"2016-08-08 08:30:57","2016-08-08 08:32:09",49d0dbc2f3
+f000b3360af769bc224470d918188bcf,23,Male,Windows,6,Average,"Political Science",,Yes,"2016-08-08 08:31:12","2016-08-08 08:32:10",49d0dbc2f3
+be5a1d4a0facbad9e9d27b78357b7b51,27,Male,"Mac OS X",3,Average,"Political Science",,Yes,"2016-08-08 08:31:11","2016-08-08 08:32:13",bbafa428fe
+1e097e4a3e049b81a288f9432dcfe1c9,25,Male,Windows,6,Average,Economics,,Yes,"2016-08-08 08:31:24","2016-08-08 08:32:13",4780b46b88
+a63d4254b6f9c54de091b0e6f28534b9,24,Female,Windows,4,"Below class average",,Nurse,Yes,"2016-08-08 08:31:06","2016-08-08 08:32:17",49d0dbc2f3
+b22c2deba3736917c465d898133d15b1,21,Male,Windows,6,Average,,Math,Yes,"2016-08-08 08:31:14","2016-08-08 08:32:23",49d0dbc2f3
+53c4e9ec7a900b3888d5b1da08f3d648,28,Male,Windows,7,"Above class average",Economics,,Yes,"2016-08-08 08:31:27","2016-08-08 08:32:27",49d0dbc2f3
+3348e78e8bb5d9a2d1459845cd84d1d0,25,Male,Windows,7,Average,Economics,,"No, haven't tried yet","2016-08-08 08:31:40","2016-08-08 08:32:27",49d0dbc2f3
+519417a382dc5fc346ff3949646c56fe,23,Male,Windows,5,"Below class average",Sociology,,Yes,"2016-08-08 08:31:36","2016-08-08 08:32:34",3eba7aac96
+120902e3f60a143de184ad9f77b3f250,25,Male,Windows,6,Average,,"Global Development (a bit of everything above)",Yes,"2016-08-08 08:30:59","2016-08-08 08:32:37",49d0dbc2f3
+49e44e469d55c9fab97ca97d89fcdd51,27,Male,"Mac OS X",6,Average,"Political Science",,Yes,"2016-08-08 08:31:59","2016-08-08 08:32:43",49d0dbc2f3
+c2f73e5e74fac65d62d92963b7e7fb7c,27,Male,Windows,9,"Above class average",Economics,,Yes,"2016-08-08 08:32:01","2016-08-08 08:32:43",75cdee8217
+8087f58e85c951f746f4dafa59ba8fa2,21,Male,"Mac OS X",7,"Above class average",,Engineering,Yes,"2016-08-08 08:30:16","2016-08-08 08:32:48",49d0dbc2f3
+92e147f1725e572b706f0dad9476540b,23,Female,"Mac OS X",6,"Below class average",,math-economic,Yes,"2016-08-08 08:31:12","2016-08-08 08:33:05",49d0dbc2f3
+6b2fab59fa6cd2ac6750a3f9a9ea58b0,26,Male,Windows,7,Average,Economics,,Yes,"2016-08-08 08:32:47","2016-08-08 08:33:20",49d0dbc2f3
+9f7b9f5d9c2f8b643833f5da37758836,32,Female,Windows,2,"Below class average","Political Science",,Yes,"2016-08-08 08:33:22","2016-08-08 08:34:05",810355f30b
+06ac2dcb98795790668a96dda1b7b339,21,Female,Windows,5,Average,,Math-economic,Yes,"2016-08-08 08:33:41","2016-08-08 08:34:38",43194d35c3
