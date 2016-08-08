@@ -50,18 +50,21 @@ knitr::opts_chunk$set(
 
 ### Who's ahead in the polls?
 
+\centering
 ![](figures/tv2.jpg)
 
 ## 
 
 ### What values are displayed in this chart?
 
+\centering
 ![](figures/excel1.png)
 
 ## 
 
 ### The answer may surprise you
 
+\centering
 ![](figures/excel2.png)
 
 ## Goals 
@@ -113,22 +116,27 @@ Basic perceptual processes play a very strong role
 
 ## 
 
+\centering
 ![](figures/climateViz.png)
 
 ## 
 
+\centering
 ![](figures/pie-chart-1.png)
 
 ## 
 
+\centering
 ![](figures/pie-chart-2.png)
 
 ## 
 
+\centering
 ![](figures/3d_pies_in_the_sky.png)
 
 ## 
 
+\centering
 ![](figures/two_axis.jpg)
 
 ## Some things I think work well
@@ -141,14 +149,17 @@ Tufte
 
 ##
 
+\centering
 ![](figures/sm.jpg)
 
 ## "Lollipops" and "dumbbells"
 
+\centering
 ![](figures/dumbbell.png)
 
 ## Slopegraphs
 
+\centering
 ![](figures/slopegraph.png)
 
 ## Data visualization software
@@ -200,6 +211,7 @@ Bob Rudis [recreated their plot](https://rud.is/b/2016/07/07/bridging-the-politi
 
 ## 
 
+\centering
 ![](figures/pew.png)
 
 ## Basics 
@@ -261,7 +273,13 @@ p
 ## Let's add a line
 
 ```{r line}
-p + geom_line()
+p = p + geom_line()
+```
+
+##
+
+```{r, echo = FALSE}
+p
 ```
 
 ## Problem
@@ -279,7 +297,13 @@ p = ggplot(data = df,
 ## Try again
 
 ```{r line2}
-p + geom_line()
+p = p + geom_line()
+```
+
+##
+
+```{r, echo = FALSE}
+p
 ```
 
 ## Thoughts
@@ -296,7 +320,13 @@ p + geom_line()
 ## 1. Shading below the line
 
 ```{r ribbon1}
-p + geom_ribbon(aes(ymin = 0, ymax = pct))
+p = p + geom_ribbon(aes(ymin = 0, ymax = pct))
+```
+
+##
+
+```{r, echo = FALSE}
+p
 ```
 
 ## 2. Filling should be transparent
@@ -304,6 +334,11 @@ p + geom_ribbon(aes(ymin = 0, ymax = pct))
 ```{r ribbon2}
 p = p + geom_ribbon(aes(ymin = 0, ymax = pct), 
                     alpha = .5)
+```
+
+##
+
+```{r, echo = FALSE}
 p
 ```
 
@@ -393,7 +428,7 @@ ggsave(plot = p, file = "figures/polarization.pdf",
 ## Output
 
 \centering
-The output can be seen [here](xxx).
+![](figures/polarization.pdf)
 
 ## Visualizing Polls
 
@@ -461,7 +496,7 @@ p = ggplot(df, aes(x = predicted, y = density))
 ## 
 
 ```{r}
-p + geom_line()
+p = p + geom_line()
 ```
 
 ## 
@@ -469,7 +504,7 @@ p + geom_line()
 ```{r}
 p = ggplot(df, aes(x = predicted, y = density, 
                    group = group, color = Parti))
-p + geom_line()
+p = p + geom_line()
 ```
 
 ## 
@@ -482,12 +517,6 @@ p = p +
   facet_grid(party.ord ~ ., 
              scales = "free_y", 
              switch = "y") 
-```
-
-## 
-
-```{r, echo = FALSE}
-p
 ```
 
 ## New strategy
@@ -505,12 +534,6 @@ p = p +
              scales = "free_y", switch = "y") 
 ```
 
-## 
-
-```{r, echo = FALSE}
-p
-```
-
 ## Add latest poll
 
 ```{r}
@@ -518,12 +541,6 @@ p = p + geom_line(data = df.2,
               aes(x = predicted, y = density, 
                   group = group), 
               colour = "red", size = 1)
-```
-
-## 
-
-```{r, echo = FALSE}
-p
 ```
 
 ## Details I
@@ -540,20 +557,140 @@ p = p + scale_x_continuous(
   labs(y = NULL, x = NULL)
 ```
 
+## Output
+
+\centering
+![](figures/polls.pdf)
+
+
+## Steph Curry
+
+\centering
+http://www.nytimes.com/interactive/2016/04/16/upshot/stephen-curry-golden-state-warriors-3-pointers.html
+
+## 
+
+\centering
+![](figures/botwitter.png)
+
+## Data
+
+```{r}
+library("readr")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "sebastianbarfort/sds_summer/"
+branch = "gh-pages/"
+link = "data/basket_tidy.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
+```
+
+## 
+
 ```{r, echo = FALSE}
-ggsave(plot = p, file = "figures/polls.pdf",
-       width = 8, height = 6)
+knitr::kable(df[1:5, 1:6])
+```
+
+## Plot
+
+```{r}
+p = ggplot(data = df, 
+           aes(x = games, 
+               y = agg.three,
+               color = as.factor(steph.ind),
+               group = player))
+```
+
+## Add steps
+
+```{r}
+p = p + geom_step(size = 1) 
+```
+
+##
+
+```{r, echo = FALSE}
+p
+```
+
+## Fix scales, etc.
+
+```{r}
+p = p + scale_x_continuous(
+    expand = c(0, 0),
+    limits = c(0, 160),
+    breaks = c(0, 20, 40, 60, 80)) +
+  scale_y_continuous(
+    expand = c(0, 0)) +
+  theme_minimal()
+```
+
+## 
+
+```{r, echo = FALSE}
+p
+```
+
+## Fix color and axis labels
+
+```{r}
+p = p +
+  scale_color_manual(
+    values = c("grey50", "grey50", "darkblue")) +
+  labs(x = "Games", 
+       y = "# of threes", 
+       title = "Stephen Curry's 3-Point Record")
+```
+
+## Theme changes
+
+```{r}
+p = p + 
+  theme(legend.position = "none",
+        axis.ticks.x = element_blank(),
+        axis.line.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
+## 
+```{r, echo = FALSE}
+p
+```
+
+## Labels 
+
+\centering
+https://github.com/slowkow/ggrepel
+
+## Preparation
+
+```{r}
+data.max = df %>% 
+  filter(player == 
+           "Stephen Curry, 2015-16") %>% 
+  filter(agg.three == max(agg.three))
+```
+
+## Label
+
+```{r}
+library("ggrepel")
+p = p +
+  geom_text_repel(
+    data = data.max,
+    aes(label = player, 
+        color = as.factor(steph.ind)),
+    size = 3,
+    nudge_x = 24,
+    segment.size = 0
+  ) 
 ```
 
 ## Output
 
 \centering
-The output can be seen [here]().
-
-
-## Steph Curry
-
-[Stephen Curry’s 3-Point Record in Context: Off the Charts](http://www.nytimes.com/interactive/2016/04/16/upshot/stephen-curry-golden-state-warriors-3-pointers.html?smid=fb-nytimes&smtyp=cur)
+![](figures/steph.png)
 
 ## Firearm prices
 
@@ -571,7 +708,6 @@ branch = "gh-pages/"
 link = "data/armslist.csv"
 data.link = paste0(gh.link, user.repo, branch, link)
 df = read_csv(data.link)
-names(df)
 ```
 
 ## Create ggplot
