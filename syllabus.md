@@ -14,7 +14,7 @@ A tentative syllabus, subject to change, is below.
 |Aug 9| 13-15 | Data Manipulation (I) | [Data Manipulation](https://sebastianbarfort.github.io/sds_summer/slides/manipulation.pdf) ([code](https://sebastianbarfort.github.io/sds_summer/code/manipulation.R))
 |Aug 10| 9-12 | Data Manipulation (II) |  
 |Aug 10| 13-15 | Exercises + Brainstorming | [Exercise 1: Hollywood's gender divide](https://sebastianbarfort.github.io/sds_summer/posts/2016/08/05/exercise-1.html)
-|Aug 11| 9-12 | Generating New Data |
+|Aug 11| 9-12 | Generating New Data | [Data Gathering](https://sebastianbarfort.github.io/sds_summer/slides/gathering.pdf) ([code](https://sebastianbarfort.github.io/sds_summer/code/gathering.R))
 |Aug 11| 13-15 | Exercises + Brainstorming  |  [Exercise 2: I Paid a Bribe](https://sebastianbarfort.github.io/sds_summer/posts/2016/08/06/exercise-2.html)
 |Aug 12| 9-12 |  Big Data in Economics |  
 |Aug 12| 13-15 | Reproducible Research |  

@@ -227,12 +227,14 @@ Let's loop through every link and extract some information.
 
 ## Cleaning the vector
 
+Assume that we're only interested in domestic and international politics 
+
 ```{r}
-jp.keep.index = jp.links %>%
-  str_detect("http://jyllands-posten.dk/")
-jp.remove.index = jp.links %>% 
-  str_detect("protected|premium")
-jp.links.clean = jp.links[jp.keep.index]
+jp.keep = jp.links %>%
+  str_detect("politik|indland|international")
+jp.links.clean = jp.links[jp.keep]
+jp.remove.index = jp.links.clean %>% 
+  str_detect("protected|premium|finans")
 jp.links.clean = jp.links.clean[!jp.remove.index]
 ```
 
@@ -275,17 +277,18 @@ Let's write a function that for each new link will return article text.
 
 ```{r}
 scrape_jp = function(link){
-  print.link = link %>% 
-    str_replace(".*[0-9]/", "")
-  print(paste0("scraping: ", print.link))
   my.link = link %>% 
     read_html(encoding = "UTF-8")
-  my.link.text = my.link %>% 
+  author = my.link %>% 
+    html_nodes(".bylineAuthorName span") %>% 
+    html_text()
+  if (length(author) == 0){ author = NA }
+  link.text = my.link %>% 
     html_nodes("#articleText") %>% 
     html_text() 
-  return(data.frame( 
-    link = link,
-    text = my.link.text ))
+  if (length(link.text) == 0){ link.text = NA }
+  return(data.frame(author = author,
+    link = link, text = link.text ))
 }
 ```
 
@@ -295,7 +298,7 @@ Now we can iterate through all the links and grab the data
 
 ```{r}
 library("purrr")
-jp.article.data = jp.links.clean[1:10] %>% 
+jp.article.data = jp.links.clean[1:5] %>% 
   map_df(scrape_jp)
 ```
 
@@ -364,22 +367,16 @@ We can write R code to interface with an API (lot's require authentication thoug
 
 Many packages already connect to well-known API's 
 
-## 
+## APIs
 
-\centering
-\Large `REST` v. `POST` APIs
+Most APIs are `REST` APIs
 
-## WTF?
+Implemented in `R` in `httr` package.
 
 **GET**: \alert{Retrieve} whatever is specified by the URL
 
 **POST**: \alert{Create} resource at URL with given data
 
-**PUT**: \alert{Update} resource at URL with given data
-
-Most APIs are `REST` APIs
-
-Implemented in `R` in `httr` package.
 
 ## Example: Github Issues
 
@@ -505,6 +502,87 @@ setup_twitter_oauth(consumer_key,
 searchTwitter("#dkpol", n=500)
 ```
 
+## Interesting API packages
+
+\centering
+[rfacebook](https://github.com/pablobarbera/Rfacebook)
+
+[streamR](https://github.com/pablobarbera/streamR)
+
+[instaR](https://github.com/pablobarbera/instaR)
+
+[rtimes](https://github.com/rOpenGov/rtimes)
+
+[tuber](https://github.com/soodoku/tuber)
+
+[ggmap](https://cran.r-project.org/web/packages/ggmap/ggmap.pdf)
+
+## `gmapsdistance`
+
+Another useful package is `gmapsdistance`
+
+It uses the [Google Maps Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/intro?hl=en) to compute the distance(s) and time(s) between two points or two vectors of points
+
+```{r, eval = FALSE}
+install.packages("gmapsdistance")
+```
+
+##
+
+```{r}
+library("gmapsdistance")
+results = gmapsdistance(origin = "København", 
+                        destination = "Roskilde", 
+                        mode = "driving")
+```
+
+## 
+
+```{r, echo = FALSE}
+results
+```
+
+##
+
+Compute walking distance between Marathon and Athens
+
+```{r}
+results = gmapsdistance(
+  origin = "38.1621328+24.0029257",
+  destination = "37.9908372+23.7383394",
+  mode = "walking")
+```
+
+## 
+
+```{r, echo = FALSE}
+results
+```
+
+## Geocode
+
+```{r}
+library("ggmap")
+geocode("Økonomisk Institut, 
+        Københavns Universitet, København")
+```
+
+##
+
+```{r}
+geocode("The White House")
+```
+
+## Statistics Denmark API
+
+https://github.com/rOpenGov/dkstat
+
+Lets you programatically work with Statistics Denmark data
+
+```{r, eval = FALSE}
+library("devtools")
+install_github("rOpenGov/dkstat")
+```
 
 
 

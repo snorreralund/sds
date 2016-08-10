@@ -1,28 +1,3 @@
-## ----Setup, include=FALSE, results='hide', warning=FALSE-----------------
-hook_output = knitr::knit_hooks$get('output')
-knitr::knit_hooks$set(output = function(x, options) {
-  # this hook is used only when the linewidth option is not NULL
-  if (!is.null(n <- options$linewidth)) {
-    x = knitr:::split_lines(x)
-    # any lines wider than n should be wrapped
-    if (any(nchar(x) > n)) x = strwrap(x, width = n)
-    x = paste(x, collapse = '\n')
-  }
-  hook_output(x, options)
-})
-knitr::opts_chunk$set(
-              dev= "pdf",
-               fig.width=4.25,
-               fig.height=2.5,
-               fig.show="hold",
-               fig.lp="fig:",
-               fig.align = "center",
-               dpi = 300,
-               cache=TRUE,
-               par=TRUE,
-               echo=TRUE,
-               message=FALSE,
-               warning=FALSE)
 
 ## ---- message = FALSE, tidy=FALSE----------------------------------------
 library("readr")
@@ -42,9 +17,15 @@ args(gather)
 
 ## ------------------------------------------------------------------------
 df.gather = df %>% 
-  gather(key = income, 
+  gather(key = test, 
+         value = frequency, 
+         c(religion, variable1, variable2))
+
+df.gather.2 = gather(data = df, 
+         key = income, 
          value = frequency, 
          -religion)
+
 
 ## ---- echo = FALSE-------------------------------------------------------
 knitr::kable(df.gather[1:5, ])

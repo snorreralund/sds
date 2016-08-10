@@ -1,4 +1,8 @@
 
+install.packages("readr")
+install.packages("ggplot2")
+
+
 ## ------------------------------------------------------------------------
 library("readr")
 gh.link = "https://raw.githubusercontent.com/"
@@ -9,9 +13,13 @@ data.link = paste0(gh.link, user.repo, branch, link)
 df = read_csv(data.link)
 names(df)
 
+https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pages/data/polarization.csv
+https://raw.githubusercontent.com/sebastianbarfort/sds_summer/gh-pages/data/polarization.csv
+
 ## ------------------------------------------------------------------------
 library("ggplot2")
 p = ggplot(data = df, aes(x = x, y = pct))
+p <- ggplot(data = df, aes(x = x, y = pct))
 
 ## ---- echo = FALSE-------------------------------------------------------
 library("ggplot2")
@@ -52,11 +60,11 @@ p
 
 ## ------------------------------------------------------------------------
 p = p + scale_color_manual(
-  name=NULL, 
-  values=c(Dem="#728ea2",REP="#cf6a5d"),
+  name="", 
+  values=c(Dem="blue",REP="red"),
   labels=c(Dem="Democrats", REP="Republicans")) +
   scale_fill_manual(
-    name=NULL, 
+    name="", 
     values=c(Dem="#728ea2", REP="#cf6a5d"),
     labels=c(Dem="Democrats", REP="Republicans")) +
   guides(color="none", 
@@ -68,7 +76,7 @@ p
 ## ------------------------------------------------------------------------
 p = p + 
   scale_x_continuous(
-    expand = c(0,0), breaks = c(-8, 0, 8),
+    breaks = c(-8, 0, 8),
     labels= c("Consistently\nliberal", 
               "Mixed",
               "Consistently\nconservative")) +
@@ -80,7 +88,7 @@ p
 
 ## ------------------------------------------------------------------------
 p = p + facet_wrap(~ year, ncol = 2, 
-                   scales = "free_x")
+                   scales = "fixed")
 
 ## ---- echo = FALSE-------------------------------------------------------
 p
@@ -98,6 +106,9 @@ p = p +
   theme(legend.position = c(0.75, 0.1)) +
   theme(legend.direction = "horizontal") +
   theme(axis.text.y = element_blank())
+
+
+
 
 ## ---- echo = FALSE-------------------------------------------------------
 ggsave(plot = p, file = "figures/polarization.pdf",
