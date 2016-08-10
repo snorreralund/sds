@@ -1,0 +1,182 @@
+---
+author: Sebastian Barfort
+title: "Social Data Science"
+subtitle: "Exercise 5.4.1"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  beamer_presentation:
+    keep_tex: no
+    theme: metropolis
+    latex_engine: xelatex
+    slide_level: 2
+    incremental: no
+    fig_width: 7
+    fig_height: 6
+    fig_caption: false
+    includes:
+      in_header: header.tex
+fontsize: 10pt
+classoption: compress
+---
+
+```{r Setup, include=FALSE, results='hide', warning=FALSE}
+hook_output = knitr::knit_hooks$get('output')
+knitr::knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+knitr::opts_chunk$set(
+              dev= "pdf",
+               fig.width=4.25,
+               fig.height=2.5,
+               fig.show="hold",
+               fig.lp="fig:",
+               fig.align = "center",
+               dpi = 300,
+               cache=TRUE,
+               par=TRUE,
+               echo=TRUE,
+               message=FALSE,
+               warning=FALSE)
+```
+
+\LARGE Exercise 5.4.1 
+
+## Read data
+
+### `intrade`
+
+```{r}
+library("readr")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "kosukeimai/qss/"
+branch = "master/"
+link = "PREDICTION/intrade08.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+intrade.08 = read_csv(data.link)
+```
+
+```{r}
+link = "PREDICTION/intrade12.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+intrade.12 = read_csv(data.link)
+```
+
+##
+
+ Name                Description
+ ------------------- ---------------------------------------------------------
+ `day`               Date of the session 
+ `statename`         Full name of each state 
+ `state`             Abbreviation of each state 
+ `PriceD`            Predicted vote share of D Nominee's market
+ `PriceR`            Predicted vote share of R Nominee's market 
+ `VolumeD`           Total session trades of D Nominee's market
+ `VolumeR`           Total session trades of R Nominee's market 
+
+## 
+
+### `pres`
+
+```{r}
+link = "PREDICTION/pres08.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+pres.08 = read_csv(data.link)
+```
+
+```{r}
+link = "PREDICTION/pres12.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+pres.12 = read_csv(data.link)
+```
+
+##
+
+ Name                 Description
+ -------------------- ---------------------------------------------------------
+ `state.name`         Full name of state (only in `pres2008`)
+ `state`              Two letter state abbreviation
+ `Obama`              Vote percentage for Obama
+ `McCain`             Vote percentage for McCain
+ `EV`                 Number of electoral college votes for this state
+
+## 
+
+### `polls`
+
+```{r}
+link = "PREDICTION/polls08.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+polls.08 = read_csv(data.link)
+```
+
+```{r}
+link = "PREDICTION/polls12.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+polls.12 = read_csv(data.link)
+```
+
+## 
+
+ Name                 Description
+ -------------------- ---------------------------------------------------------
+ `state`              Abbreviated name of state in which poll was conducted 
+ `Obama`              Predicted support for Obama (percentage)
+ `Romney`             Predicted support for Romney (percentage) 
+ `Pollster`           Name of organization conducting poll 
+ `middate`            Middle of the period when poll was conducted 
+
+## 5.4.1.1
+
+```{r}
+library("dplyr")
+df.08 = intrade.08 %>% 
+  left_join(pres.08)
+```
+
+## 
+
+```{r}
+df.08 = df.08 %>% 
+  mutate( # gen variables
+    days.to.election = as.Date("2008-11-04") - 
+      as.Date(day),
+    obama.intmarg = PriceD - PriceR,
+    obama.actmarg = Obama - McCain
+  ) %>% 
+  mutate( # gen sign indicator
+    obama.intmarg.sign = sign(obama.intmarg),
+    obama.actmarg.sign = sign(obama.actmarg)
+  )
+```
+
+## 
+
+```{r}
+df.08 %>% 
+  filter(days.to.election == 1) %>%
+  filter(obama.intmarg.sign != 
+           obama.actmarg.sign) %>% 
+  count()
+```
+
+## 
+
+```{r, echo = FALSE}
+library("ggplot2")
+p = ggplot(df.08, 
+           aes(x = days.to.election, 
+               y = EV))
+p = p + geom_point() + 
+  geom_hline(yintercept = 370, 
+             color = "red", 
+             linetype = "dashed")
+p
+```
+
