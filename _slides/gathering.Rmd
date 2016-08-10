@@ -584,6 +584,12 @@ library("devtools")
 install_github("rOpenGov/dkstat")
 ```
 
+## Extensions
 
+[selanium](https://cran.rstudio.com/web/packages/RSelenium/)
+
+[selaniumPipes](https://github.com/johndharrison/seleniumPipes)
+
+[tabulizer](https://github.com/leeper/tabulizer)
 
 
