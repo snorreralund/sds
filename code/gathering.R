@@ -1,5 +1,3 @@
-
-## ------------------------------------------------------------------------
 library("rvest")
 link = paste0("http://en.wikipedia.org/",
               "wiki/Table_(information)")
@@ -84,6 +82,33 @@ library("purrr")
 jp.article.data = jp.links.clean[1:5] %>% 
   map_df(scrape_jp)
 
+## ---- echo = FALSE-------------------------------------------------------
+econ.link = "http://www.econ.ku.dk/ansatte/vip/"
+links = econ.link %>% 
+  read_html(encoding = "UTF-8") %>%
+  html_nodes("td:nth-child(1) a")%>%
+  html_attr(name = 'href')
+
+long.links = paste(econ.link, links, sep = "")
+
+scrape_econ = function(link){
+  my.link = link %>% 
+    read_html(encoding = "UTF-8")
+  title = my.link %>% 
+    html_nodes("#content .type") %>% 
+    html_text()
+  title = title[1]
+  name = my.link %>% 
+    html_nodes(".person") %>% 
+    html_text()
+  name = name[1]
+  return( data.frame(name = name, 
+                     title = title))
+}
+
+econ.data = long.links[1:5] %>% 
+  map_df(scrape_econ)
+
 ## ------------------------------------------------------------------------
 library("httr")
 url = "https://api.github.com/repos/hadley/dplyr/issues"
@@ -98,19 +123,6 @@ get.1.data = fromJSON(get.1.parsed, flatten = TRUE)
 get.2.parsed = content(get.2, as = "text")
 get.2.data = fromJSON(get.2.parsed, flatten = TRUE)
 
-## ---- eval = FALSE-------------------------------------------------------
-## library("twitteR")
-## consumer_key = 'your key'
-## consumer_secret = 'your secret'
-## access_token = 'your access token'
-## access_secret = 'your access secret'
-## 
-## setup_twitter_oauth(consumer_key,
-##                     consumer_secret,
-##                     access_token,
-##                     access_secret)
-## 
-## searchTwitter("#dkpol", n=500)
 
 ## ---- eval = FALSE-------------------------------------------------------
 ## install.packages("gmapsdistance")

@@ -8,9 +8,6 @@ link = "vignettes/pew.csv"
 data.link = paste0(gh.link, user.repo, branch, link)
 df = read_csv(data.link)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df[1:3, 1:5])
-
 ## ------------------------------------------------------------------------
 library("tidyr")
 args(gather)
@@ -26,9 +23,6 @@ df.gather.2 = gather(data = df,
          value = frequency, 
          -religion)
 
-
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.gather[1:5, ])
 
 ## ---- eval = FALSE-------------------------------------------------------
 ## df %>%
@@ -51,20 +45,11 @@ link = "vignettes/billboard.csv"
 data.link = paste0(gh.link, user.repo, branch, link)
 df = read_csv(data.link)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df[1:5, 1:5])
-
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df[1:5, 6:10])
-
 ## ------------------------------------------------------------------------
 billboard2 = df %>% 
   gather(key = week, 
          value = rank, wk1:wk76, 
          na.rm = TRUE)
-
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(billboard2[1:5, -3])
 
 ## ------------------------------------------------------------------------
 library("dplyr")
@@ -75,8 +60,6 @@ billboard3 = billboard2 %>%
   select(-date.entered) %>% 
   arrange(artist, track, week)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(billboard3[1:5, 1:5])
 
 ## ---- message = FALSE----------------------------------------------------
 library("readr")
@@ -87,28 +70,18 @@ link = "vignettes/tb.csv"
 data.link = paste0(gh.link, user.repo, branch, link)
 df = read_csv(data.link)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df[1:5, 1:8])
-
 ## ------------------------------------------------------------------------
 tb2 = df %>% 
   gather(demo, n, -iso2, -year, na.rm = TRUE)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(tb2[1:5, 1:4])
 
 ## ------------------------------------------------------------------------
 tb3 = tb2 %>% 
   separate(demo, c("sex", "age"), 1)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(tb3[1:5, 1:5])
-
 ## ------------------------------------------------------------------------
 tb3.wide = tb3 %>% spread(age, n)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(tb3.wide[1:5, 1:8])
 
 ## ---- message = FALSE, warning = FALSE-----------------------------------
 library("readr")
@@ -131,8 +104,6 @@ df.max.udgift = df %>%
   filter(udgift == max(udgift)) %>% 
   select(paragraf, aar, udgift)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.max.udgift)
 
 ## ------------------------------------------------------------------------
 df.skat = df %>% 
@@ -140,24 +111,16 @@ df.skat = df %>%
   select(paragraf, aar, udgift) %>% 
   arrange(-udgift)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.skat[1:5, ])
 
 ## ------------------------------------------------------------------------
 df.mutated = df %>%
   mutate(newVar = udgift/2) %>%
   select(newVar, udgift)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.mutated[1:5, ])
-
 ## ------------------------------------------------------------------------
 df.sample.n = df %>% 
   select(paragraf, aar, udgift) %>%
   sample_n(3)
-
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.sample.n)
 
 ## ------------------------------------------------------------------------
 df.expense = df %>% 
@@ -165,17 +128,12 @@ df.expense = df %>%
   summarise(sum.exp = sum(udgift, na.rm = TRUE)) %>% 
   arrange(-sum.exp)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.expense[1:5, ])
-
 ## ------------------------------------------------------------------------
 df.2 = df %>% 
   group_by(paragraf) %>% 
   mutate(sum.exp = sum(udgift, na.rm = TRUE)) %>% 
   select(paragraf, udgift, sum.exp)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.2[1:5, ])
 
 ## ------------------------------------------------------------------------
 df.expense.2 = df %>% 
@@ -183,8 +141,6 @@ df.expense.2 = df %>%
   summarise(sum.exp = sum(udgift, na.rm = TRUE)) %>% 
   arrange(sum.exp)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.expense.2[1:5, ])
 
 ## ------------------------------------------------------------------------
 df.expense.3 = df %>% 
@@ -194,8 +150,6 @@ df.expense.3 = df %>%
   group_by(paragraf) %>%
   summarise(sum.exp = mean(exp, na.rm = TRUE))
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df.expense.3[1:5, ])
 
 ## ---- echo = FALSE-------------------------------------------------------
 superheroes = c("    name, alignment, gender,         publisher",
@@ -209,8 +163,6 @@ superheroes = c("    name, alignment, gender,         publisher",
 
 superheroes = read.csv(text = superheroes, strip.white = TRUE)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(superheroes)
 
 ## ---- echo = FALSE-------------------------------------------------------
 publishers = c("publisher, yr_founded",
@@ -219,20 +171,12 @@ publishers = c("publisher, yr_founded",
     "    Image,       1992")
 publishers = read.csv(text = publishers, strip.white = TRUE)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(publishers)
-
 ## ------------------------------------------------------------------------
 ijsp = inner_join(superheroes, publishers)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(ijsp)
 
 ## ------------------------------------------------------------------------
 ljsp = left_join(superheroes, publishers)
-
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(ljsp)
 
 ## ---- message = TRUE-----------------------------------------------------
 superheroes = superheroes %>% 
@@ -241,23 +185,17 @@ publishers = publishers %>%
   mutate(seb = (publisher == "Marvel"))
 ij2 = inner_join(superheroes,publishers)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(ij2)
 
 ## ------------------------------------------------------------------------
 ij2 = inner_join(superheroes, publishers,
                     by=c("publisher"="publisher",
                             "seblikes"="seb"))
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(ij2)
 
 ## ------------------------------------------------------------------------
 fj = superheroes %>%
   full_join(publishers)
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(fj[, -c(5, 7)])
 
 ## ---- eval = FALSE-------------------------------------------------------
 ## my_function = function(input1, input2, ..., inputN)
@@ -302,8 +240,6 @@ df = data.frame(
   d = rchisq(5, 1)
 )
 
-## ---- echo = FALSE-------------------------------------------------------
-knitr::kable(df)
 
 ## ------------------------------------------------------------------------
 output = vector()
