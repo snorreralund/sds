@@ -321,7 +321,8 @@ knitr::kable(dplyr::glimpse(jp.article.data))
 
 ```{r, echo = FALSE}
 econ.link = "http://www.econ.ku.dk/ansatte/vip/"
-links = read_html(econ.link, encoding = "UTF-8") %>%
+links = econ.link %>% 
+  read_html(encoding = "UTF-8") %>%
   html_nodes("td:nth-child(1) a")%>%
   html_attr(name = 'href')
 
@@ -339,7 +340,7 @@ scrape_econ = function(link){
     html_text()
   name = name[1]
   return( data.frame(name = name, 
-                title = title))
+                     title = title))
 }
 
 econ.data = long.links[1:5] %>% 
