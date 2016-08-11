@@ -46,9 +46,82 @@ knitr::opts_chunk$set(
                warning=FALSE)
 ```
 
+## Today
+
+Git & Github
+
+markdown & rmarkdown
+
 ##
 
 ![](figures/dilbert2.jpg)
+
+---
+
+\LARGE Git & Github
+
+## Why version control?
+
+> Your closest collaborator is you six months ago, but you don't reply to emails.
+
+Detailed log of all changes.
+
+Easy to revert back to previous versions.
+
+Clear attribution of work (who contributed what).
+
+## 
+
+### Without version control
+
+\centering
+![](figures/nogit.jpg)
+
+
+##
+
+### With version control
+
+\centering
+![](figures/git.jpg)
+
+
+## git & github
+
+**what is `git`**?
+Git is an open source command line program for version control.
+
+**what is `github`**? 
+A company/web service that hosts Git repositories and enables 'social coding'
+
+**What is GitHub for Mac/Windows?**
+A GUI for Git.
+
+Makes it easier to use.
+
+Ultimately just does command line Git.
+
+## Getting started with Git
+
+Key terms (local):
+
+- Repository (repo): a directory where Git looks for changes
+
+- Initialize (init): have Git begin watching a directory
+
+- add: stage a file so that Git starts watching it
+
+- master: the main branch. By convention this should be the most stable version.
+
+- push: commit changes to a remotely hosted repository
+
+- pull: merge changes from a remotely hosted repository
+
+In GUI GitHub push and pull are combined into sync
+
+---
+
+\LARGE markdown & rmarkdown
 
 ## Why use Markdown?
 
@@ -70,14 +143,6 @@ _LaTeX_ gives you much greater control, but it is restricted to pdf and has a __
 
 markdown was created for the web (you know it if you use Github, Stackoverflow, etc.)
 
-## What is `rmarkdown`?
-
-`rmarkdown` is a new package from RStudio that merges a lot of technologies in an exciting way.
-
-In fact, in RStudio now, you integrate R code into your Markdown document and render as HTML/pdf/Word in the click of a button! 
-
-## Markdown Basics
-
 ## Example
 
 Suppose we want to create a nested list
@@ -85,11 +150,9 @@ Suppose we want to create a nested list
 * fruits
     - apples
         - macintosh
-        - red delicious
     - pears 
     - peaches
 * vegetables
-    - broccoli
     - chard
     
 ## Latex
@@ -99,16 +162,14 @@ Suppose we want to create a nested list
 \item fruits         
 \begin{itemize}       
 \item apples          
-\begin{itemize}     
+  \begin{itemize}     
   \item macintosh     
-  \item red delicious 
   \end{itemize}       
-\item pears           
+\item pears 
 \item peaches         
 \end{itemize}         
 \item vegetables        
   \begin{itemize}       
-    \item brocolli        
     \item chard           
   \end{itemize}         
 \end{itemize}  
@@ -123,7 +184,6 @@ Suppose we want to create a nested list
             <li>apples
             <ul>
                 <li>macintosh</li>
-                <li>red delicious</li>
             </ul></li>
             <li>pears</li>
             <li>peaches</li>
@@ -131,21 +191,27 @@ Suppose we want to create a nested list
         <li>vegetables
         <ul>
             <li>brocolli</li>
-            <li>chard</li>
         </ul></li>
     </ul>    
 ```  
     
+---
+
 ## Markdown
 
     * fruits
         - apples
             - macintosh
-            - red delicious
         - pears 
         - peaches
     * vegetables
-        - broccoli
         - chard
+     
+## What is `rmarkdown`?
+
+`rmarkdown` is a new package from RStudio that merges a lot of technologies in an exciting way.
+
+In fact, in RStudio now, you integrate R code into your Markdown document and render as HTML/pdf/Word in the click of a button! 
+
         
 
