@@ -143,22 +143,11 @@ Read one of the following
 
 - Broniatowski, David Andre, Michael J. Paul, and Mark Dredze. 2014. "[Twitter: big data opportunities](http://cs.jhu.edu/~mpaul/files/science_letter_twitter.pdf)." *Inform*, 49: 255.
 
-
 ### August 16
 
 *Keywords*: Unsupervised Learning.
 
 - Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2001. "[Introduction to statistical learning](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)". Vol. 1. Springer, Berlin: Springer series in statistics. (pages: 373-399).
-
-*Keywords*: Text Data.
-
-- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 5 section 1-2.
-
-- Grimmer, Justin, and Brandon M. Stewart. 2013. "[Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://pan.oxfordjournals.org/content/early/2013/01/21/pan.mps028.short)." *Political Analysis*, 21.3: 267-297.
-
-**Inspiration**
-
-- King, G., Pan, J., & Roberts, M. E. 2013. [How censorship in China allows government criticism but silences collective expression](http://gking.harvard.edu/files/censored.pdf). *American Political Science Review*, 107(02), 326-343.
 
 
 ### August 17
@@ -180,5 +169,18 @@ Read one of the following
 - Alessandro Acquisti. 2015. The Economics and Behavioral Economics of Privacy. Chapter 3 in *Privacy, Big Data, and the Public Good: Frameworks for Engagement* (eds. Julia Lane, Victoria Stodden, Stefan Bender, Helen Nissenbaum). Cambridge University Press.
 
 - Fabian Neuhaus & Timothy Webmoor. 2012. "[AGILE ETHICS FOR MASSIFIED RESEARCH AND VISUALIZATION](http://www.tandfonline.com/doi/abs/10.1080/1369118X.2011.616519)." Information, Communication & Society 15:1, 43-65
+
+## August 18
+
+*Keywords*: Text Data.
+
+- Imai, Kosuke. 2016. *A First Course in Quantitative Social Science*. Read chapter 5 section 1-2.
+
+- Grimmer, Justin, and Brandon M. Stewart. 2013. "[Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://pan.oxfordjournals.org/content/early/2013/01/21/pan.mps028.short)." *Political Analysis*, 21.3: 267-297.
+
+**Inspiration**
+
+- King, G., Pan, J., & Roberts, M. E. 2013. [How censorship in China allows government criticism but silences collective expression](http://gking.harvard.edu/files/censored.pdf). *American Political Science Review*, 107(02), 326-343.
+
 
 ##### Footnotes
