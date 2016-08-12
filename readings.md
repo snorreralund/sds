@@ -129,7 +129,7 @@ Read one of the following
 
 - Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2001. "[Introduction to statistical learning](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)". Vol. 1. Springer, Berlin: Springer series in statistics. (pages: 15-42, 175-184, 214-227)
 
-- Varian. Hal. 2014. "[Big Data: New Tricks for Econometrics]((http://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.3))". *Journal of Economic Perspectives*, 28.2: 3-27.
+- Varian. Hal. 2014. ["Big Data: New Tricks for Econometrics"](http://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.3). *Journal of Economic Perspectives*, 28.2: 3-27.
 
 **Inspiration**
 
