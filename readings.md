@@ -158,7 +158,7 @@ Read one of the following
 
 - Alessandro Acquisti et al. 2015. "[Privacy and human behavior in the age of information](http://science.sciencemag.org/content/347/6221/509.full.pdf+html)." Science 347, 509.
 
-- Heffetz, Ori, and Katrina Ligett. 2014. "[Privacy and Data-Based Research](pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.75)." *The Journal of Economic Perspectives*, 28.2: 75-98.
+- Heffetz, Ori, and Katrina Ligett. 2014. "[Privacy and Data-Based Research](http://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.75)." *The Journal of Economic Perspectives*, 28.2: 75-98.
 
 - Jesse Singal. 2015. "[The Case of the Amazing Gay-Marriage Data: How a Graduate Student Reluctantly Uncovered a Huge Scientific Fraud](http://nymag.com/scienceofus/2015/05/how-a-grad-student-uncovered-a-huge-fraud.html)." New York Magazine.
 
