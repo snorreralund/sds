@@ -281,3 +281,225 @@ When you are interested in a **causal question** you need to think carefully abo
 
 Is causality the only thing policy makers and social scientists should be interested in?
 
+---
+
+\LARGE Prediction
+
+## Prediction
+
+> “It's tough to make predictions, especially about the future.” 
+
+*Storm P*
+
+Many policy problems are not about causality but rather about prediction
+
+
+## Who predicts?
+
+* Local governments -> pension payments/crime/etc
+* Google -> whether you will click on an ad
+* Netflix -> what movies you will watch
+* Insurance companies -> what your risk of death is
+* You? -> will *Social Data Science* be a fun/rewarding/interesting course to follow?
+
+## Why predict? Glory!
+
+\centering
+![](http://www2.pictures.zimbio.com/gi/Chris+Volinsky+Netflix+Awards+1+Million+Netflix+WOtFSoPeoOal.jpg)
+
+[Netflix Awards $1 Million Prize and Starts a New Contest](http://bits.blogs.nytimes.com/2009/09/21/netflix-awards-1-million-prize-and-starts-a-new-contest/?8au&emc=au)
+
+## Why predict? Riches!
+
+\centering
+![](http://kaggle2.blob.core.windows.net/competitions/hhp/2496/logos/header.png)
+
+[http://www.heritagehealthprize.com/c/hhp](http://www.heritagehealthprize.com/c/hhp)
+
+## Introduction to statistical learning
+
+Standard empirical techniques are not optimized for prediction problems because they focus on inference
+
+Remember the Gauss-Markov theorem from Econometrics B? 
+
+**Gauss-Markov Theorem**: In a regression model where $E(u_i) = 0$ (no omitted variable bias) and $V(u_i) = \sigma^2$ (homoskedasticity), the OLS estimator is BLUE (Best Linear Unbiased Estimator). 
+
+Keywords: *unbiased* ($E(\hat{\beta}) = \beta$) and *best* (smallest variance among the class
+of all linear unbiased estimators)
+
+But what about **biased** estimators?
+
+## The bias-variance tradeoff
+
+OLS is designed to minimize *in sample error*: the error rate you get on the same
+data set you used to build your predictor.
+
+$$ \text{arg min}_{\beta} \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2 $$
+
+But for prediction we are interested in minimizing *out of sample error*: the error rate you get on a new
+data set
+
+Too see this, consider a prediction at a new point, $x_0$. Our prediction for $y_0$ is then $\hat{f}(x_0)$ and the mean squared error (MSE ) can be decomposed as 
+
+$$ E[(y_0 - \hat{f}(x_0))^2] = [\text{Bias}(\hat{f}(x_0))]^2 + V(\hat{f}(x_0)) + \sigma^2$$
+
+By ensuring zero bias, OLS picks a corner solution. This is generally not optimal for prediction. 
+
+
+## Bias and variance
+
+What do we mean by the *variance* and *bias* of an estimator?
+
+$\text{Bias}(\hat{f}(x_0)) = E[\hat{f}(x_0) - f(x_0)]$: Bias refers to the error that is introduced by approximating a real-life problem with a simple model. It won't fit the new data well. 
+
+$V(\hat{f}(x_0))$: Model too complex. Small changes to the data will cause the solution to change a lot. 
+
+Machine learning techniques were developed specifically to maximize prediction performance by providing an empirical way to make this bias-variance trade off
+
+But generally, that means that all our models are somewhat biased (making inference irrelevant)
+
+## Statistical learning: overview
+
+**General ideas**
+
+- test and training data, cross validation
+- regularization
+
+**Supervised learning**: Models designed to infer a relationship from *labeled* training data.
+ 
+- linear model selection (OLS, Ridge, Lasso, PCA regression)
+- Classification (logistic, linear discriminant analysis, KNN, CART)
+
+**Unsupervised learning**: Models designed to infer a relationship from *unlabeled* training data.
+
+- PCA 
+- KNN 
+
+## Summary
+
+Statistical learning models are designed to optimally trade off bias and variance
+
+This makes them more efficient for prediction than OLS
+
+But also **generally biased** (so they are generally not meant for inference)
+
+Statistical learning models can also be used for **exploratory data analysis**
+
+## Example: predicting gender from weight/height
+
+Can we predict gender based on information on an individual's weight/height?
+
+```{r, message = FALSE, warning = FALSE}
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "johnmyleswhite/ML_for_Hackers/"
+branch = "master/02-Exploration/"
+link = "data/01_heights_weights_genders.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df[1:5, ])
+```
+
+## 
+
+```{r, echo = FALSE}
+library("ggplot2")
+library("viridis")
+ggplot(df, aes(x = Height, fill = Gender)) + 
+  geom_density(alpha = .5) +
+  scale_fill_viridis(discrete = TRUE)
+```
+ 
+## 
+
+```{r, echo = FALSE}
+ggplot(df, aes(x = Weight, y = Height)) + 
+  geom_point(alpha = .25) + 
+  geom_smooth()
+```
+
+##
+
+```{r, echo = FALSE}
+ggplot(df, aes(x = Weight, y = Height, 
+               colour = Gender)) + 
+  geom_point(alpha = .1) +
+  scale_color_viridis(discrete = TRUE)
+```
+
+## Logit model
+
+```{r}
+df = df %>% mutate(gender = Gender == "Male")
+logit.model = glm(gender ~ Height + Weight, 
+                  data = df, 
+                  family = binomial(link = "logit"))
+```
+
+## The binomial model
+
+Logit estimates
+
+$$ P(Y_i = 1 |X_i = x_i) = \frac{1}{1 + e^{-x_i\beta}}$$
+
+This probability is .5 when $x_i\beta = 0$
+
+So we can classify predicted gender based on height and weight
+
+$$
+\hat{y} = \left\{
+\begin{array}{rl}
+1 & \text{if } x_i\beta \geq 0,\\
+0 & \text{otherwise}
+\end{array} \right.
+$$
+
+## Calculate classification line
+
+**Intercept**: $$ W = \frac{-\alpha - \beta_1 H}{\beta_2} $$
+
+**Slope**: $$ -\frac{\beta_1}{\beta_2} $$
+
+So now we have a classifier: For each combination of weight and height we're able to predict gender based on our logistic model
+
+## 
+
+```{r, echo = FALSE}
+ggplot(df, aes(x = Height, y = Weight)) + 
+  geom_point(aes(colour = Gender), alpha = .3) +
+  geom_abline(
+    intercept = - coef(logit.model)[1] /coef(logit.model)[2],
+    slope = - coef(logit.model)[2] / coef(logit.model)[3],
+    color = "black") +
+  scale_color_viridis(discrete = TRUE)
+```
+
+## 
+
+```{r, echo = FALSE}
+df$prediction = logit.model$fitted.values
+ggplot(sample_frac(df, .25), aes(x = Height, y = Weight)) + 
+  geom_point(shape = 21, color = "black",
+             aes(fill = Gender, 
+                 size = abs(prediction - .5)), alpha = .1) +
+  geom_abline(
+    intercept = - coef(logit.model)[1] / coef(logit.model)[2],
+    slope = - coef(logit.model)[2] / coef(logit.model)[3],
+    color = "black") +
+    scale_size_continuous(guide = "none") +
+  scale_fill_viridis(discrete = TRUE)
+```
+
+## Misclassification
+
+
+
+
+
+
+
+
