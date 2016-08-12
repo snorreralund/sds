@@ -52,6 +52,8 @@ Git & Github
 
 markdown & rmarkdown
 
+Shiny
+
 ##
 
 ![](figures/dilbert2.jpg)
@@ -213,5 +215,17 @@ Suppose we want to create a nested list
 
 In fact, in RStudio now, you integrate R code into your Markdown document and render as HTML/pdf/Word in the click of a button! 
 
-        
+##
+
+\centering 
+https://vimeo.com/178485416
+
+---
+
+\LARGE Shiny
+
+## 
+
+\centering
+https://www.rstudio.com/products/shiny/shiny-user-showcase/
 
