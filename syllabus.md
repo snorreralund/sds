@@ -21,8 +21,8 @@ A tentative syllabus, subject to change, is below.
 |Aug 15| 9-12 |  Causation & Prediction |  
 |Aug 15| 13-15 | Exercise + Brainstorming |  
 |Aug 16| 9-12 |  Statistical Learning |  
-|Aug 16| 13-15 | Text as Data |  
+|Aug 16| 13-15 | Exercise + Brainstorming |  
 |Aug 17| 9-12 |  Privacy |  
-|Aug 18| 9-12 |  Buffer |  
+|Aug 18| 9-12 |  Text as Data |  
 |Aug 19| 9-12 |  Wrap Up |  
 | | | ---------------  <font color="red"> End of course </font> --------------- | |
