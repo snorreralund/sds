@@ -316,75 +316,6 @@ Many policy problems are not about causality but rather about prediction
 
 [http://www.heritagehealthprize.com/c/hhp](http://www.heritagehealthprize.com/c/hhp)
 
-## Introduction to statistical learning
-
-Standard empirical techniques are not optimized for prediction problems because they focus on inference
-
-Remember the Gauss-Markov theorem from Econometrics B? 
-
-**Gauss-Markov Theorem**: In a regression model where $E(u_i) = 0$ (no omitted variable bias) and $V(u_i) = \sigma^2$ (homoskedasticity), the OLS estimator is BLUE (Best Linear Unbiased Estimator). 
-
-Keywords: *unbiased* ($E(\hat{\beta}) = \beta$) and *best* (smallest variance among the class
-of all linear unbiased estimators)
-
-But what about **biased** estimators?
-
-## The bias-variance tradeoff
-
-OLS is designed to minimize *in sample error*: the error rate you get on the same
-data set you used to build your predictor.
-
-$$ \text{arg min}_{\beta} \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2 $$
-
-But for prediction we are interested in minimizing *out of sample error*: the error rate you get on a new
-data set
-
-Too see this, consider a prediction at a new point, $x_0$. Our prediction for $y_0$ is then $\hat{f}(x_0)$ and the mean squared error (MSE ) can be decomposed as 
-
-$$ E[(y_0 - \hat{f}(x_0))^2] = [\text{Bias}(\hat{f}(x_0))]^2 + V(\hat{f}(x_0)) + \sigma^2$$
-
-By ensuring zero bias, OLS picks a corner solution. This is generally not optimal for prediction. 
-
-
-## Bias and variance
-
-What do we mean by the *variance* and *bias* of an estimator?
-
-$\text{Bias}(\hat{f}(x_0)) = E[\hat{f}(x_0) - f(x_0)]$: Bias refers to the error that is introduced by approximating a real-life problem with a simple model. It won't fit the new data well. 
-
-$V(\hat{f}(x_0))$: Model too complex. Small changes to the data will cause the solution to change a lot. 
-
-Machine learning techniques were developed specifically to maximize prediction performance by providing an empirical way to make this bias-variance trade off
-
-But generally, that means that all our models are somewhat biased (making inference irrelevant)
-
-## Statistical learning: overview
-
-**General ideas**
-
-- test and training data, cross validation
-- regularization
-
-**Supervised learning**: Models designed to infer a relationship from *labeled* training data.
- 
-- linear model selection (OLS, Ridge, Lasso, PCA regression)
-- Classification (logistic, linear discriminant analysis, KNN, CART)
-
-**Unsupervised learning**: Models designed to infer a relationship from *unlabeled* training data.
-
-- PCA 
-- KNN 
-
-## Summary
-
-Statistical learning models are designed to optimally trade off bias and variance
-
-This makes them more efficient for prediction than OLS
-
-But also **generally biased** (so they are generally not meant for inference)
-
-Statistical learning models can also be used for **exploratory data analysis**
-
 ## Example: predicting gender from weight/height
 
 Can we predict gender based on information on an individual's weight/height?
@@ -417,7 +348,7 @@ ggplot(df, aes(x = Height, fill = Gender)) +
 ## 
 
 ```{r, echo = FALSE}
-ggplot(df, aes(x = Weight, y = Height)) + 
+ggplot(sample_frac(df, .5), aes(x = Weight, y = Height)) + 
   geom_point(alpha = .25) + 
   geom_smooth()
 ```
@@ -425,7 +356,7 @@ ggplot(df, aes(x = Weight, y = Height)) +
 ##
 
 ```{r, echo = FALSE}
-ggplot(df, aes(x = Weight, y = Height, 
+ggplot(sample_frac(df, .5), aes(x = Weight, y = Height, 
                colour = Gender)) + 
   geom_point(alpha = .1) +
   scale_color_viridis(discrete = TRUE)
@@ -469,37 +400,240 @@ So now we have a classifier: For each combination of weight and height we're abl
 ## 
 
 ```{r, echo = FALSE}
-ggplot(df, aes(x = Height, y = Weight)) + 
-  geom_point(aes(colour = Gender), alpha = .3) +
+buildPoly <- function(xr, yr, slope = 1, intercept = 0, above = TRUE){
+    #Assumes ggplot default of expand = c(0.05,0)
+    xrTru <- xr + 0.05*diff(xr)*c(-1,1)
+    yrTru <- yr + 0.05*diff(yr)*c(-1,1)
+
+    #Find where the line crosses the plot edges
+    yCross <- (yrTru - intercept) / slope
+    xCross <- (slope * xrTru) + intercept
+
+    #Build polygon by cases
+    if (above & (slope >= 0)){
+        rs <- data.frame(x=-Inf,y=Inf)
+        if (xCross[1] < yrTru[1]){
+            rs <- rbind(rs,c(-Inf,-Inf),c(yCross[1],-Inf))
+        }
+        else{
+            rs <- rbind(rs,c(-Inf,xCross[1]))
+        }
+        if (xCross[2] < yrTru[2]){
+            rs <- rbind(rs,c(Inf,xCross[2]),c(Inf,Inf))
+        }
+        else{
+            rs <- rbind(rs,c(yCross[2],Inf))
+        }
+    }
+    if (!above & (slope >= 0)){
+        rs <- data.frame(x= Inf,y= -Inf)
+        if (xCross[1] > yrTru[1]){
+            rs <- rbind(rs,c(-Inf,-Inf),c(-Inf,xCross[1]))
+        }
+        else{
+            rs <- rbind(rs,c(yCross[1],-Inf))
+        }
+        if (xCross[2] > yrTru[2]){
+            rs <- rbind(rs,c(yCross[2],Inf),c(Inf,Inf))
+        }
+        else{
+            rs <- rbind(rs,c(Inf,xCross[2]))
+        }
+    }
+    if (above & (slope < 0)){
+        rs <- data.frame(x=Inf,y=Inf)
+        if (xCross[1] < yrTru[2]){
+            rs <- rbind(rs,c(-Inf,Inf),c(-Inf,xCross[1]))
+        }
+        else{
+            rs <- rbind(rs,c(yCross[2],Inf))
+        }
+        if (xCross[2] < yrTru[1]){
+            rs <- rbind(rs,c(yCross[1],-Inf),c(Inf,-Inf))
+        }
+        else{
+            rs <- rbind(rs,c(Inf,xCross[2]))
+        }
+    }
+    if (!above & (slope < 0)){
+        rs <- data.frame(x= -Inf,y= -Inf)
+        if (xCross[1] > yrTru[2]){
+            rs <- rbind(rs,c(-Inf,Inf),c(yCross[2],Inf))
+        }
+        else{
+            rs <- rbind(rs,c(-Inf,xCross[1]))
+        }
+        if (xCross[2] > yrTru[1]){
+            rs <- rbind(rs,c(Inf,xCross[2]),c(Inf,-Inf))
+        }
+        else{
+            rs <- rbind(rs,c(yCross[1],-Inf))
+        }
+    }
+
+    return(rs)
+}
+
+datPoly1 <- buildPoly(range(df$Height), range(df$Weight),
+            slope= - coef(logit.model)[2] / coef(logit.model)[3],
+            intercept= - coef(logit.model)[1] /coef(logit.model)[2],
+            above = FALSE)
+datPoly2 <- buildPoly(range(df$Height), range(df$Weight),
+            slope= - coef(logit.model)[2] / coef(logit.model)[3],
+            intercept= - coef(logit.model)[1] /coef(logit.model)[2],
+            above = TRUE)
+ggplot(sample_frac(df, .5), aes(x = Height, y = Weight)) + 
+  geom_point(alpha = 0.2) +
   geom_abline(
     intercept = - coef(logit.model)[1] /coef(logit.model)[2],
     slope = - coef(logit.model)[2] / coef(logit.model)[3],
     color = "black") +
-  scale_color_viridis(discrete = TRUE)
+  geom_polygon(data=datPoly1, aes(x=x,y=y),alpha=0.2,fill="red") +
+  geom_polygon(data=datPoly2, aes(x=x,y=y),alpha=0.2,fill="blue")
 ```
 
 ## 
 
 ```{r, echo = FALSE}
 df$prediction = logit.model$fitted.values
-ggplot(sample_frac(df, .25), aes(x = Height, y = Weight)) + 
-  geom_point(shape = 21, color = "black",
-             aes(fill = Gender, 
-                 size = abs(prediction - .5)), alpha = .1) +
+df$prediction.cat = ifelse(df$prediction >= .5, "Male", "Female")
+df$classified = ifelse(df$prediction.cat == df$Gender, "correct", "incorrect")
+
+df.1 = df %>% filter(classified == "correct") %>% sample_frac(.2)
+df.2 = df %>% filter(classified != "correct") %>% sample_frac(.75)
+
+ggplot() + 
+  geom_point(data = df.1,
+             aes(x = Height, y = Weight),
+             alpha = .05) +
+  geom_point(data = df.2,
+             aes(x = Height, y = Weight,
+             fill = abs(prediction - .5)), 
+             shape = 21, color = "black",
+             alpha = .5) +
   geom_abline(
     intercept = - coef(logit.model)[1] / coef(logit.model)[2],
     slope = - coef(logit.model)[2] / coef(logit.model)[3],
-    color = "black") +
-    scale_size_continuous(guide = "none") +
-  scale_fill_viridis(discrete = TRUE)
+    color = "black") + 
+  scale_fill_viridis()
 ```
 
 ## Misclassification
 
+How many cases were misclassified?
+
+```{r}
+df.class = df %>% 
+  mutate(
+    pred.prob = predict(logit.model),
+    pred.cat = ifelse(pred.prob >= .5, 
+                      "Male", "Female"),
+    classified = ifelse(prediction.cat == Gender, 
+                        "correct", "incorrect")
+  ) %>% 
+  group_by(classified) %>% 
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df.class)
+```
+
+##
+
+```{r}
+df.class = df %>% 
+  mutate(
+    pred.prob = predict(logit.model),
+    pred.cat = ifelse(pred.prob >= .5, 
+                      "Male", "Female")
+  ) %>% 
+  group_by(Gender, pred.cat) %>% 
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+```
+
+##
+
+```{r, echo = FALSE}
+knitr::kable(df.class)
+```
+
+## How well did we do?
+
+Overall, we correctly classified 92% of the cases in our dataset
+
+Is this a good prediction model? 
+
+Is looking at the classification rate on all the data the correct strategy?
 
 
+## Introduction to statistical learning
+
+Standard empirical techniques are not optimized for prediction problems because they focus on inference
+
+Standard result in econometrics: When there is no omitted variable bias ($E(\varepsilon) = 0$) and the model is homoskedastic ($V(\varepsilon_i) = \sigma^2$) then the OLS estimator is BLUE (Best Linear Unbiased Estimator). 
+
+Keywords: *unbiased* ($E(\hat{\beta}) = \beta$) and *best* (smallest variance among the class of all linear unbiased estimators)
+
+But what about **biased** estimators?
+
+## The bias-variance tradeoff
+
+OLS is designed to minimize *in sample error*: the error rate you get on the same data set you used to build your predictor.
+
+$$ \text{arg min}_{\beta} \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2 $$
+
+But for prediction we are interested in minimizing *out of sample error*: the error rate you get on a new data set
+
+Too see this, consider a prediction at a new point, $x_0$. Our prediction for $y_0$ is then $\hat{f}(x_0)$ and the mean squared error (MSE ) can be decomposed as 
+
+$$ E[(y_0 - \hat{f}(x_0))^2] = [\text{Bias}(\hat{f}(x_0))]^2 + V(\hat{f}(x_0)) + \sigma^2$$
+
+By ensuring zero bias, OLS picks a corner solution. This is generally not optimal for prediction. 
 
 
+## Bias and variance
+
+What do we mean by the *variance* and *bias* of an estimator?
+
+$\text{Bias}(\hat{f}(x_0)) = E[\hat{f}(x_0) - f(x_0)]$: Bias refers to the error that is introduced by approximating a real-life problem with a simple model. It won't fit the new data well. 
+
+$V(\hat{f}(x_0))$: Model too complex. Small changes to the data will cause the solution to change a lot. 
+
+Machine learning techniques were developed specifically to maximize prediction performance by providing an empirical way to make this bias-variance trade off
+
+But generally, that means that all our models are somewhat biased (making inference irrelevant)
+
+## Concepts
+
+
+\alert{Cross validation}: Split data in test and training data. Train model on training data, test it on test data
+
+\alert{Regularization}: A technique used in an attempt to solve overfitting problems
+
+\alert{Supervised Learning}: Models designed to infer a relationship from **labeled** training data.
+
+- linear model selection (OLS, Ridge, Lasso)
+- Classification (logistic, KNN, CART)
+
+\alert{Unsupervised Learning}:  Models designed to infer a relationship from **unlabeled** training data.
+
+- PCA 
+- KNN 
+
+## Summary
+
+Statistical learning models are designed to optimally trade off bias and variance
+
+This makes them more efficient for prediction than OLS
+
+But also **generally biased** (so they are generally not meant for inference)
+
+Statistical learning models can also be used for **exploratory data analysis**
 
 
 
