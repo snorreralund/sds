@@ -51,9 +51,9 @@ knitr::opts_chunk$set(
 What is the objective of empirical policy research? 
 
 1. \alert{causation}: what is the effect of a particular variable on an outcome? 
-2. \alert{prediction}: given what we know, what is our best prediction of new outcomes? 
+2. \alert{prediction}: find some function that provides a good prediction of $y$ as a function of $x$
 
-Today: Short introduction 
+Today: Introduction. 
 
 ## Intution
 
@@ -99,13 +99,11 @@ $$ Y_i = Y_{0i} + (Y_{1i}-Y_{0i})D_i$$
 
 $Y_{1i}-Y_{0i}$ is the *causal* effect of $D_i$ on $Y_i$. 
 
-But we never observe the same individual $i$ in both states (treated & non-treated). 
+But we never observe the same individual $i$ in both states. This is the **fundamental problem of causal inference**. 
 
-This is the **fundamental problem of causal inference**. 
+## Selection Bias I
 
-## Selection bias
-
-We need some way of estimating the state we do not observe (the *counterfactual*)
+We need some way of estimating the state we do not observe (the \alert{counterfactual})
 
 Usually, our sample contains individuals from both states
 
@@ -115,9 +113,11 @@ So why not do a naive comparison of averages by treatment status?
  \nonumber  &E[Y_{0i}|D_i = 1] - E[Y_{0i}|D_i = 0] 
 \end{align}
 
+## Selection Bias II
+
 $E[Y_{1i}|D_i = 1] - E[Y_{0i}|D_i = 1] = E[Y_{1i} - Y_{0i}|D_i = 1]$: the average *causal* effect of $D_i$ on $Y$. 
 
-$E[Y_{0i}|D_i = 1] - E[Y_{0i}|D_i = 0]$: difference in average $Y_{0i}$ between the two groups. Likely to be different from 0 when individuals are allowed to self-select into treatment. Often referred to as \alert{selection bias} or \alert{confounding}. 
+$E[Y_{0i}|D_i = 1] - E[Y_{0i}|D_i = 0]$: difference in average $Y_{0i}$ between the two groups. Likely to be different from 0 when individuals are allowed to self-select into treatment. Often referred to as \alert{selection bias}. 
 
 ## Random assignment solves the problem
 
@@ -129,27 +129,30 @@ Intuition: with random assignment, non-treated individuals can be used as counte
 
 This allows us to overcome the fundamental problem of causal inference
 
+## Randomization
+
+\centering
+\emph{no causation without manipulation}
+
 ## Who randomizes? 
-
-> “no causation without manipulation”
-
-*Paul Holland (1986)*
 
 As mentioned, we need to worry when individuals are allowed to self-select
 
-This means that a lot of thought has to go into the *randomization phase*
+This means that a lot of thought has to go into the \alert{randomization phase}
 
 Randomization into treatment groups has to be manipulated by someone 
 
 But what about effect of \alert{immutable characteristics} such as race, gender, etc.?
 
-## Who manipulates?
+## Quasi Experiments
 
 \alert{Quasi-experiments}: randomization happens by "accident"
 
 - Differences in Differences
 - Regression Discontinuity Design
 - Instrumental variables
+
+## Randomized Controlled Trials
 
 \alert{Randomized controlled trials}: randomization done by researcher
 
@@ -176,7 +179,7 @@ In many cases, social scientists are unable to randomize treatment assignment fo
 
 \alert{Observational study}: No random manipulation of treatment
 
-Strategy: Statistical control (fixed effects, matching, etc)
+Strategy: Statistical control (control variables, fixed effects, matching, etc)
 
 Risk selection/confounding bias. 
 
@@ -191,7 +194,7 @@ Pritchett, Lant and Justin Sandefur. 2015. "[Learning from Experiments When Cont
 
 Does racial discrimination exist in the labor market?
 
-Experiment: In response to newspaper ads, researchers send out resumes of fictitious job candidates, varying only the names of the job applicants while leaving all other information in the resumes unchanges
+\alert{Experiment}: In response to newspaper ads, researchers send out resumes of fictitious job candidates, varying only the names of the job applicants while leaving all other information in the resumes unchanges
 
 Names were randomized between stereotypically black- and white-sounding names (Lakisha, Jamal, Emily, Greg, etc.)
 
@@ -271,15 +274,37 @@ stargazer::stargazer(lin.model, header = FALSE,
                      no.space = TRUE)
 ```
 
+## Example: Regression Discontinuity Design
+
+Eggers, Andrew and Alexander Fouirnaies. 2014. "[The Economic Impact of Economic News](http://andy.egge.rs/papers/Eggers_Fouirnaies_Recessions.pdf)."
+
+> We start from the observation that news media pay
+considerable attention to a binary distinction between recession and non-recession: by a convention observed in essentially every industrialized country, a recession is announced when an  economy  contracts  for  two  consecutive  quarters. In  cases  where  growth  is  essentially zero, the distinction between a recession and a non-recession becomes highly arbitrary.  Nevertheless (as we confirm below), the media treat fundamentally comparable situations quite differently, producing anxious headlines announcing a recession if growth is barely negative for two consecutive quarters but not if growth is even slightly positive.
+
+## Identification Strategy 
+
+Discontinuous relationship between recession announcements in media and underlying economic fundamentals
+
+Some countries are assigned to *recession* while others are not even when they have the same underlying economic fundamentals (exogenous assignment of treatment)
+
+**Result**: Announcing a recession reduces both consumer confidence and growth in private consumption in the quarter during which the recession is announced
+
+## Results
+
+\centering
+![](figures/eggers.png)
+
 ## Summary
 
 Causal questions are of key interest to policy makers and academics
 
-The key focus is on *inference*: we want to know about the causal effect of $D$ on $Y$ *in the population of interest*
+The key focus is on \alert{inference}: we want to know about the causal effect of $D$ on $Y$ *in the population of interest*
 
-When you are interested in a **causal question** you need to think carefully about randomization of treatment (this is often referred to as your *identification strategy*)
+When you are interested in a **causal question** you need to think carefully about randomization of treatment (this is often referred to as your \alert{identification strategy})
 
-Is causality the only thing policy makers and social scientists should be interested in?
+Due to the \alert{fundamental problem of causal inference}, we can’t estimate individual-level causal effects. Instead, we estimate averages.
+
+Is causality the only thing policy makers, firms and social scientists should be interested in?
 
 ---
 
@@ -287,12 +312,13 @@ Is causality the only thing policy makers and social scientists should be intere
 
 ## Prediction
 
-> “It's tough to make predictions, especially about the future.” 
-
-*Storm P*
-
 Many policy problems are not about causality but rather about prediction
 
+Sometimes called *prediction policy problems*
+
+- How many people will sign up for Obamacare?
+- Who will win the U.S general election in November?
+- Who should the Department of Economics hire in the future?
 
 ## Who predicts?
 
@@ -308,6 +334,16 @@ Many policy problems are not about causality but rather about prediction
 ![](http://www2.pictures.zimbio.com/gi/Chris+Volinsky+Netflix+Awards+1+Million+Netflix+WOtFSoPeoOal.jpg)
 
 [Netflix Awards $1 Million Prize and Starts a New Contest](http://bits.blogs.nytimes.com/2009/09/21/netflix-awards-1-million-prize-and-starts-a-new-contest/?8au&emc=au)
+
+## The Netflix Contest
+
+Competition started in October 2006. Training data is ratings for 18K movies by 400K Netflix customers, each rating between 1 and 5
+
+Training data is very sparse - about 98% missing
+
+Objective is to predict the rating for a set of 1 million customer-movie paris that are missing in the training data
+
+Winner: Averaged 800 models (but the solution never actually implemented)
 
 ## Why predict? Riches!
 
@@ -587,7 +623,9 @@ OLS is designed to minimize *in sample error*: the error rate you get on the sam
 
 $$ \text{arg min}_{\beta} \sum_{i = 1}^{n} (y_i - \hat{y}_i)^2 $$
 
-But for prediction we are interested in minimizing *out of sample error*: the error rate you get on a new data set
+But for prediction we are interested in minimizing \alert{out of sample error}: the error rate you get on a new data set
+
+## Prediction
 
 Too see this, consider a prediction at a new point, $x_0$. Our prediction for $y_0$ is then $\hat{f}(x_0)$ and the mean squared error (MSE ) can be decomposed as 
 
@@ -600,9 +638,9 @@ By ensuring zero bias, OLS picks a corner solution. This is generally not optima
 
 What do we mean by the *variance* and *bias* of an estimator?
 
-$\text{Bias}(\hat{f}(x_0)) = E[\hat{f}(x_0) - f(x_0)]$: Bias refers to the error that is introduced by approximating a real-life problem with a simple model. It won't fit the new data well. 
+\alert{Bias} ($(\hat{f}(x_0)) = E[\hat{f}(x_0) - f(x_0)]$): Bias refers to the error that is introduced by approximating a real-life problem with a simple model. It won't fit the new data well. 
 
-$V(\hat{f}(x_0))$: Model too complex. Small changes to the data will cause the solution to change a lot. 
+\alert{Variance} ($V(\hat{f}(x_0))$): Referes to model complexity. If the model is too complex then small changes to the data will cause the solution to change a lot. 
 
 Machine learning techniques were developed specifically to maximize prediction performance by providing an empirical way to make this bias-variance trade off
 
@@ -635,5 +673,150 @@ But also **generally biased** (so they are generally not meant for inference)
 
 Statistical learning models can also be used for **exploratory data analysis**
 
+---
+
+\LARGE Models in `R`
+
+## Linear Regression
+
+Linear regression is a simple approach to supervised learning. Assumes that the dependence of $Y$ on $X_1, ..., X_n$ is linear
+
+Assumes a model of
+
+$$ Y = \alpha + \beta X + \varepsilon$$
+
+Where $\alpha$ and $\beta$ are unknown constants to be estimated from the data. 
+
+When we've obtained these estimates, we can predict values of the dependent variable by plugging in new values of $X$
+
+$$ \hat{y} = \hat{\alpha} + \hat{\beta}X $$
+
+## R
+
+```{r}
+library("readr")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "sebastianbarfort/sds_summer/"
+branch = "gh-pages/"
+link = "data/bball.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
+```
+
+## Predict points
+
+```{r}
+model.1 = lm(
+  pts ~ height + weight + fg.pct + ft.pct, 
+  data = df)
+```
+
+## Useful functions and packages
+
+- `stargazer`: convert model to LaTeX
+- `broom`: convert model to tidy format
+- `summary`: summarise model output
+- `predict`: predict new $y$ based on $x$
+
+## 
+
+```{r, eval = FALSE}
+library("stargazer")
+stargazer(model.1)
+```
+
+## 
+
+```{r, echo = FALSE, results = "asis"}
+library("stargazer")
+stargazer(model.1, header = FALSE, style = "ajps", no.space = TRUE,
+          keep.stat = "n")
+```
+
+## 
+
+```{r}
+library("broom")
+output.1 = model.1 %>% tidy
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(output.1)
+```
+
+## 
+
+```{r, echo = FALSE}
+output.1 = output.1 %>% 
+  filter(term != "(Intercept)") 
+```
+
+```{r}
+p = ggplot(output.1, aes(x = term, y = estimate))
+p = p + geom_hline(aes(yintercept = 0),  size = 2, 
+             colour = "white") +
+  geom_point() +
+  geom_errorbar(aes(ymin=estimate-2*std.error, 
+                    ymax=estimate+2*std.error)) +
+  coord_flip()
+```
+
+## Coefficient Plot
+
+```{r, echo = FALSE}
+p 
+```
+
+## Logistic Regression
+
+```{r}
+df = df %>% mutate(pts.high = pts > 13)
+model.2 = glm(
+  pts.high ~ height + weight + fg.pct + ft.pct, 
+  data = df,
+  family = binomial(link = "logit"))
+```  
+  
+## 
+
+```{r}
+library("modelr")
+df.plot = df %>% 
+  data_grid(fg.pct = seq_range(fg.pct, 50), 
+            .model = model.2) 
+preds = predict(model.2,
+                newdata = df.plot, 
+                type = "response",
+                se = TRUE)
+df.plot$pred.full = preds$fit
+df.plot$ymin = df.plot$pred.full - 2*preds$se.fit
+df.plot$ymax = df.plot$pred.full + 2*preds$se.fit  
+```  
+  
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df.plot[1:6, 1:6])
+```
+  
+##
+
+```{r}
+p = ggplot(df.plot, aes(x = fg.pct, y = pred.full)) + 
+    geom_ribbon(aes(y = pred.full, 
+                    ymin = ymin, 
+                    ymax = ymax),alpha = 0.25) +
+    geom_line(color = "blue")
+```  
+
+## 
+
+```{r, echo = FALSE}
+p +
+  labs(x = "Field Goal Percentage",
+       y = "Predicted Probability")
+```
 
 
