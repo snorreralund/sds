@@ -18,7 +18,7 @@ A tentative syllabus, subject to change, is below.
 |Aug 11| 13-15 | Exercises + Brainstorming  |  [Ex 2: I Paid a Bribe](https://sebastianbarfort.github.io/sds_summer/posts/2016/08/06/exercise-2.html) ([solution](https://sebastianbarfort.github.io/sds_summer/code/exercise2.R))
 |Aug 12| 9-12 |  Big Data in Economics | [Big Data](https://sebastianbarfort.github.io/sds_summer/slides/bigdata.pdf)
 |Aug 12| 13-15 | Reproducible Research | [Research Tools](https://sebastianbarfort.github.io/sds_summer/slides/tools.pdf)
-|Aug 15| 9-12 |  Causation & Prediction |  
+|Aug 15| 9-12 |  Causation & Prediction | [Causation & Prediction](https://sebastianbarfort.github.io/sds_summer/slides/causality.pdf) ([code](https://sebastianbarfort.github.io/sds_summer/code/causality.R))
 |Aug 15| 13-15 | Exercise + Brainstorming |  
 |Aug 16| 9-12 |  Statistical Learning |  
 |Aug 16| 13-15 | Exercise + Brainstorming |  
