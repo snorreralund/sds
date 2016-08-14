@@ -1,0 +1,333 @@
+---
+author: Sebastian Barfort
+title: "Social Data Science"
+subtitle: Statistical Learning
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  beamer_presentation:
+    keep_tex: no
+    theme: metropolis
+    latex_engine: xelatex
+    slide_level: 2
+    incremental: no
+    fig_width: 7
+    fig_height: 6
+    fig_caption: false
+    includes:
+      in_header: header.tex
+fontsize: 10pt
+classoption: compress
+---
+
+```{r Setup, include=FALSE, results='hide', warning=FALSE}
+hook_output = knitr::knit_hooks$get('output')
+knitr::knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+knitr::opts_chunk$set(
+              dev= "pdf",
+               fig.width=4.25,
+               fig.height=2.5,
+               fig.show="hold",
+               fig.lp="fig:",
+               fig.align = "center",
+               dpi = 300,
+               cache=TRUE,
+               par=TRUE,
+               echo=TRUE,
+               message=FALSE,
+               warning=FALSE)
+```
+
+```{r, echo = FALSE}
+library("ggplot2")
+theme_set(theme_gray() + 
+            theme(
+              plot.background = element_rect(fill = "transparent")))
+```
+
+## Introduction
+
+What is the objective of empirical policy research? 
+
+1. \alert{causation}: what is the effect of a particular variable on an outcome? 
+2. \alert{prediction}: given what we know, what is our best prediction of new outcomes? 
+
+Today: Short introduction 
+
+## Cross Validation
+
+```{r, echo = FALSE}
+set.seed(100)
+library("modelr")
+library("tidyr")
+library("dplyr")
+library("purrr")
+library("viridis")
+```
+
+## True model
+
+```{r}
+true_model = function(x){
+  2 + 8*x^4 + rnorm(length(x), sd = 1)
+}
+```
+
+## Generate data
+
+```{r}
+df = data_frame(
+  x = seq(0, 1, length = 50),
+  y = true_model(x)
+)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df[1:6, ])
+```
+
+## Fit models
+
+```{r}
+my_model = function(pol, data = df){
+  lm(y ~ poly(x, pol), data = data)
+}
+```
+
+## Fit a linear model
+
+```{r}
+model.1 = my_model(pol = 1)
+```
+
+## 
+
+```{r, echo = FALSE, results = "asis"}
+stargazer::stargazer(model.1, header = FALSE,
+                     style = "ajps", no.space = TRUE)
+```
+
+## Add predictions
+
+```{r}
+add_pred = function(mod, data = df){
+  data %>% add_predictions(mod, var = "pred")
+}
+
+df.1 = add_pred(model.1)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df.1[1:6, ])
+```
+
+## RMSE
+
+```{r, echo = FALSE}
+p = ggplot(df.1)
+p + geom_segment(aes(x=x, 
+                   xend=x, 
+                   y=y, yend=pred), 
+                   color="red") +
+  geom_point(aes(x = x, y = y),
+               color = "black") +
+  geom_line(aes(x = x, y = pred), 
+            size = 1)
+```
+  
+## Finding the "best" model
+
+```{r}
+# Estimate polynomial from 1 to 9
+models = 1:9 %>% 
+  map(my_model) %>% 
+  map_df(add_pred, .id = "poly")
+```  
+
+##
+
+```{r, echo = FALSE}
+knitr::kable(models[1:6, ])
+```
+
+##
+
+```{r, echo = FALSE}
+# plot
+p = ggplot(data = models,
+       aes(x, pred)) +
+  geom_segment(aes(x=x, 
+                   xend=x, 
+                   y=y, yend=pred), 
+                   color="red") +
+  geom_point(data = df,
+             aes(x, y),
+             color = "grey50",
+             fill = "white",
+             shape = 21) +
+  geom_line(aes( color = poly == 4),
+            size = 1) +
+  facet_wrap(~ poly, ncol = 3) +
+  scale_color_manual(values = c("black", "blue")) +
+  theme(legend.position = "none") +
+  labs(x = NULL, y = NULL)
+
+ggsave(plot = p, file = "figures/polynomials.pdf",
+       width = 8, height = 6)
+```
+
+\centering
+![](figures/polynomials.pdf)
+
+## Choosing the best model
+
+```{r}
+models.rmse = models %>% 
+  mutate(error = y - pred,
+         sq.error = error^2) %>% 
+  group_by(poly) %>% 
+  summarise(
+    mse = mean(sq.error),
+    rmse = sqrt(mse)
+  ) %>% 
+  arrange(rmse)
+```
+
+##
+
+```{r, echo = FALSE}
+knitr::kable(models.rmse[, c(1, 3)])
+```
+
+## Cross Validation
+
+```{r}
+gen_crossv = function(pol, data = df){
+  data %>% 
+    crossv_mc(500) %>% 
+    mutate(
+      mod = map(train, ~ lm(y ~ poly(x, pol), data = .)),
+      rmse.test = map2_dbl(mod, test, rmse),
+      rmse.train = map2_dbl(mod, train, rmse)
+    )
+}
+```
+
+## gen cross validation data
+
+```{r}
+set.seed(3000)
+df.cv = 1:10 %>% 
+  map_df(gen_crossv, .id = "degree")
+```
+
+## 
+
+```{r, echo = FALSE}
+df.cv[1:5, c(1, 4, 5, 6, 7)]
+```
+
+## 
+
+```{r}
+df.cv.sum = df.cv %>% 
+  group_by(degree) %>% 
+  summarise(
+    m.rmse.test = mean(rmse.test),
+    m.rmse.train = mean(rmse.train)
+  )
+```
+
+```{r, echo = FALSE}
+df.cv.sum = df.cv.sum %>% 
+  mutate(degree = as.numeric(degree)) %>% 
+  gather(var, value, -degree) %>% 
+  arrange(degree)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df.cv.sum[1:7, ])
+```
+
+## 
+
+```{r, echo = FALSE}
+set.seed(100)
+
+true_model = function(x){
+  2 + 8*x^4 + rnorm(length(x), sd = 1)
+}
+
+df = data_frame(
+  x = seq(0, 1, length = 50),
+  y = true_model(x)
+)
+
+# fit models
+my_model = function(pol){
+  lm(y ~ poly(x, pol), data = df)
+}
+
+add_pred = function(mod, data = df){
+  data %>% add_predictions(mod, var = "pred")
+}
+
+gen_crossv = function(pol, data = df){
+  data %>% 
+    crossv_mc(500) %>% 
+    mutate(
+      mod = map(train, ~ lm(y ~ poly(x, pol), data = .)),
+      rmse.test = map2_dbl(mod, test, rmse),
+      rmse.train = map2_dbl(mod, train, rmse)
+    )
+}
+
+# gen cross validation data
+df.cv = 1:11 %>% 
+  map_df(gen_crossv, .id = "degree")
+
+df.cv.sum = df.cv %>% 
+  group_by(degree) %>% 
+  summarise(
+    m.rmse.test = mean(rmse.test),
+    m.rmse.train = mean(rmse.train)
+  )
+
+df.cv.sum = df.cv.sum %>% 
+  mutate(degree = as.numeric(degree)) %>% 
+  gather(var, value, -degree) %>% 
+  arrange(degree)
+
+p = ggplot(df.cv.sum, 
+           aes(x = degree, y = value,
+               color = var))
+p + geom_point() +
+  geom_line() +
+  scale_color_viridis(discrete = TRUE,
+                      name = NULL,
+                      labels = c("RMSE (test)",
+                                 "RMSE (train)")) +
+  theme(legend.position = "bottom") +
+  labs(x = "Degree", y = "RMSE") +
+  scale_x_continuous(breaks = 1:11)
+```
+
+
+
+
+
+
