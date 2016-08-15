@@ -21,7 +21,7 @@ A tentative syllabus, subject to change, is below.
 |Aug 15| 9-12 |  Causation & Prediction | [Causation & Prediction](https://sebastianbarfort.github.io/sds_summer/slides/causality.pdf) ([code](https://sebastianbarfort.github.io/sds_summer/code/causality.R))
 |Aug 15| 13-15 | Exercise + Brainstorming |  [Ex 3: Leader Assassinations](https://sebastianbarfort.github.io/sds_summer/posts/2016/08/14/exercise-3.html)
 |Aug 16| 9-12 |  Statistical Learning | [Statistical Learning](https://sebastianbarfort.github.io/sds_summer/slides/learning.pdf) ([code](https://sebastianbarfort.github.io/sds_summer/code/learning.R))
-|Aug 16| 13-15 | Exercise + Brainstorming |  
+|Aug 16| 13-15 | Exercise + Brainstorming |  [Ex 4: Linear Models](https://sebastianbarfort.github.io/sds_summer/posts/2016/08/15/exercise-4.html)
 |Aug 17| 9-12 |  Privacy |  
 |Aug 18| 9-12 |  Text as Data |  
 |Aug 19| 9-12 |  Wrap Up |  
