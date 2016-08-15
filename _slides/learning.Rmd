@@ -47,33 +47,178 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo = FALSE}
-library("ggplot2")
-theme_set(theme_gray() + 
-            theme(
-              plot.background = element_rect(fill = "transparent")))
-```
-
-## Introduction
-
-What is the objective of empirical policy research? 
-
-1. \alert{causation}: what is the effect of a particular variable on an outcome? 
-2. \alert{prediction}: given what we know, what is our best prediction of new outcomes? 
-
-Today: Short introduction 
-
-## Cross Validation
-
-```{r, echo = FALSE}
 set.seed(100)
 library("modelr")
 library("tidyr")
 library("dplyr")
 library("purrr")
 library("viridis")
+library("ggplot2")
+theme_set(theme_gray() + 
+            theme(
+              plot.background = element_rect(fill = "transparent")))
 ```
 
-## True model
+## Concepts
+
+\alert{Cross validation}: Split data in test and training data. Train model on training data, test it on test data
+
+\alert{Supervised Learning}: Models designed to infer a relationship from **labeled** training data.
+
+- linear model selection (OLS, Ridge, Lasso)
+- Classification (logistic, KNN, CART)
+
+\alert{Unsupervised Learning}:  Models designed to infer a relationship from **unlabeled** training data.
+
+- PCA 
+
+---
+
+\LARGE Cross Validation
+
+
+## Error
+
+Statistical learning models are designed to minimize \alert{out of sample error}: the error rate you get on a new data set
+
+Key ideas
+
+- Out of sample error is what you care about
+- In sample error $<$ out of sample error
+- The reason is overfitting (matching your algorithm to the data you have)
+
+## Out of sample error (continuous variables)
+
+**Mean squared error (MSE)**:
+
+$$\frac{1}{n} \sum_{i=1}^{n} (\text{prediction}_i - \text{truth}_i)^2$$
+
+**Root mean squared error (RMSE)**:
+
+$$\sqrt{\frac{1}{n} \sum_{i=1}^{n} (\text{prediction}_i - \text{truth}_i)^2}$$
+
+**Question:** what is the difference?
+
+## Example: predicting age of death
+
+```{r}
+library("readr")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "johnmyleswhite/ML_for_Hackers/"
+branch = "master/"
+link = "05-Regression/data/longevity.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df[1:6, ])
+```
+
+## 
+
+Let's look at RMSE for different guesses of age of death
+
+```{r}
+add_rmse = function(i){
+  df %>% 
+    mutate(sq.error = (AgeAtDeath - i)^2) %>% 
+    summarise(mse = mean(sq.error),
+              rmse = sqrt(mse),
+              guess = i)
+}
+
+df.rmse = 63:83 %>% 
+  map_df(add_rmse)
+```
+
+## 
+
+```{r, echo = FALSE}
+df.rmse.2 = df.rmse %>% filter(rmse == min(rmse))
+ggplot(df.rmse, aes(x = guess, y = rmse)) +
+  geom_point() +
+  geom_line() +
+  geom_point(data = df.rmse.2,
+             color = "red") 
+```
+
+## 
+
+```{r}
+df.rmse %>% 
+  filter(rmse == min(rmse))
+```
+
+##
+
+```{r}
+df %>% 
+  summarise(round(mean(AgeAtDeath), 0))
+```
+
+## Out of sample error (discrete variables)
+
+One simple way to assess model accuracy when you have discrete outcomes (republican/democrat, professor/student, etc) could be the mean classification error
+
+$$\text{Ave}(I(y_0 \neq \hat{y}_0))$$
+
+But assessing model accuracy with discrete outcomes is often not straightforward. 
+
+Alternative: ROC curves
+
+## Type 1 and Type 2 Errors
+
+\centering
+![](figures/types.jpg)
+
+## Test and training data 
+
+Accuracy on the training set (resubstitution accuracy) is optimistic
+
+A better estimate comes from an independent set (test set accuracy)
+
+But we can't use the test set when building the model or it becomes part of the training set
+
+So we estimate the test set accuracy with the training set 
+
+Remember the bias-variance tradeoff
+
+## Cross Validation
+
+Why not just randomly dvidide the data into a test and training set?
+
+Two drawbacks
+
+1. The estimate of the RMSE on the test data can be highly variable, depending on precisely which observations are included in the test and training sets
+2. In this approach, only the training data is used to fit the model. Since statistical models generally perform worse when trained on fewer observations, this suggests that the RMSE on the test data may actually be too large
+
+One very useful refinement of the test-training data approach is \alert{cross-validation}
+
+## k-fold Cross Validation
+
+1. Divide the data into $k$ roughly equal subsets and label them $s = 1, ..., k$. 
+2. Fit your model using the $k-1$ subsets other than subset $s$ 
+3. Predict for subset $s$ and calculate RMSE
+4. Stop if $s = k$, otherwise increment $s$ by $1$ and continue
+
+The $k$ fold CV estimate is computed by averaging the mean squared errors ($\text{MSE}_1, ..., \text{MSE}_k$)
+
+$$\text{CV}_k = \frac{1}{k}\sum_{i = 1}^{k} \text{MSE}_i$$
+
+Common choices for $k$ are 10 and 5. 
+
+CV can (and should) be used both to find tuning parameters and to report goodness-of-fit measures. 
+
+##  
+
+\centering
+![](figures/kfold.png)
+
+
+## Example
 
 ```{r}
 true_model = function(x){
@@ -97,6 +242,8 @@ knitr::kable(df[1:6, ])
 ```
 
 ## Fit models
+
+We want to search for the correct model using a series of polynomials of different degrees.
 
 ```{r}
 my_model = function(pol, data = df){
@@ -133,7 +280,7 @@ df.1 = add_pred(model.1)
 knitr::kable(df.1[1:6, ])
 ```
 
-## RMSE
+## MSE
 
 ```{r, echo = FALSE}
 p = ggplot(df.1)
@@ -207,6 +354,8 @@ models.rmse = models %>%
 
 ##
 
+### Which model is best?
+
 ```{r, echo = FALSE}
 knitr::kable(models.rmse[, c(1, 3)])
 ```
@@ -216,9 +365,10 @@ knitr::kable(models.rmse[, c(1, 3)])
 ```{r}
 gen_crossv = function(pol, data = df){
   data %>% 
-    crossv_mc(500) %>% 
+    crossv_kfold(10) %>% 
     mutate(
-      mod = map(train, ~ lm(y ~ poly(x, pol), data = .)),
+      mod = map(train, ~ lm(y ~ poly(x, pol), 
+                            data = .)),
       rmse.test = map2_dbl(mod, test, rmse),
       rmse.train = map2_dbl(mod, train, rmse)
     )
@@ -326,8 +476,452 @@ p + geom_point() +
   scale_x_continuous(breaks = 1:11)
 ```
 
+--- 
+
+\LARGE Supervised Learning
+
+## Introduction
+
+**Supervised learning**: Models designed to infer a relationship from *labeled* training data.
+
+**Labelled data**: For each observation of the predictor variables, $x_i, 1,..., n$ there is an associated response measurement $y_i$
+
+- When the response measurement is discrete: \alert{classifiation}
+- when the response is continuous: \alert{regression}
+
+## Regularization
+
+The problem with overfitting comes from our model being too complex
+
+\alert{Complexity}: models are complex when the number or size of the coefficients is large
+
+One approach: punish the model for doing this
+
+This approach is called \alert{regularization}
+
+## Ridge and Lasso regression
+
+Two popular models build on this approach: Ridge and Lasso
+
+The approach is similar: include a \alert{loss function} in the OLS minimization problem to prevent overfitting
+
+$$\sum_{i = 1}^{n}(y_i - \beta_0 - \sum_{j = 1}^{p} b_j x_{ij})^2 + \text{LOSS}$$
+
+- Ridge uses the L2 norm: $\alpha \sum_{j = 1}^{p} \beta_{j}^{2}$
+- Lasso uses the L1 norm: $\alpha \sum_{j = 1}^{p} |\beta_{j}|$
+
+This turns out to be very important 
+
+## 
+
+![](https://qph.is.quoracdn.net/main-qimg-c8436cb17c8797831f857289eb2d0876?convert_to_webp=true)
+
+L1 regularization gives you sparse estimates (and therefore performs some form of variable selection)
+
+## Back to our example...
+
+```{r}
+lm.fit = my_model(pol = 1)
+l2.norm = sum(coef(lm.fit)^2)
+l1.norm = sum(abs(coef(lm.fit)))
+print(paste0("l2.norm is ", l2.norm))
+print(paste0("l1.norm is ", l1.norm))
+```
+
+## Fitting Lasso/Ridge models
+
+Regularization methods are implemented in R in the `glmnet` package (although it might also be worth checking out the newer `caret` and `mlr` packages)
+
+```{r, message = FALSE, warning = FALSE}
+library("glmnet")
+```
+
+`alpha` controls the norm. 
+
+`alpha = 1` is the Lasso penalty, 
+
+`lasso = 0` is Ridge
+
+```{r, echo = FALSE}
+set.seed(1)
+df = data_frame(
+  x = seq(0, 1, length = 50000),
+  y = true_model(x)
+)
+```
+
+## 
+
+```{r}
+x = poly(df$x, 9)
+y = df$y
+
+out = glmnet(x, y)
+```
+
+## `glmnet` output
+
+The output contains three columns
+
+- `Df`: tells you how many coefficients in the model ended up being nonzero
+- `%Dev`: essentially a R2 for the model
+- `Lambda`: the loss parameter
+
+Because `Lambda` controls the values that we get from the model, it is often referred to as a *hyperparameter*
+
+Large `Lambda`: heavy penalty for model complexity 
+
+## Picking `Lambda`
+
+Which `Lambda` minimizes RMSE in our **test data**?
+
+```{r}
+cal_rmse = function(prediction, truth){
+  return(sqrt(mean( (prediction - truth) ^2)))
+}
+
+performance = function(i){
+  prediction = predict(glmnet.fit, 
+                       poly(test.df$x, 9), 
+                       s = i)
+  truth = test.df$y
+  RMSE = cal_rmse(prediction, truth)
+  return( data.frame(lambda = i, 
+                     rmse = RMSE))
+}
+```
+
+##
+
+Create test and training data
+
+```{r}
+n = nrow(df)
+indices = sort(sample(1:n, round(.5*n)))
+training.df = df[indices, ]
+test.df = df[-indices, ]
+glmnet.fit = glmnet(poly(training.df$x, 9), 
+                    training.df$y) 
+lambdas = glmnet.fit$lambda
+
+perf.df = lambdas %>% 
+  map_df(performance)
+```
+
+## 
+
+```{r, echo = FALSE}
+ggplot(perf.df, 
+       aes( x = lambda, y = rmse)) + 
+  geom_point() + geom_line() +
+  geom_point(data = perf.df %>% 
+               filter(rmse == min(rmse)),
+             color = "red")
+```
+
+## 
+
+```{r}
+best.lambda = perf.df %>% 
+  filter(lambda == min(lambda))
+glmnet.fit = glmnet(poly(df$x, 9), df$y)
+```
+
+## 
+
+```{r}
+coef(glmnet.fit, s = best.lambda$lambda)
+```
+
+## Conclusion
+
+The Lasso model ended up using only 4 nonzero coefficients even though the model had the ability to use 9
+
+Selecting a simpler model when more complicated models are possible is exactly the point of regularization
+
+---
+
+\LARGE Classification
+
+## Introduction
+
+When we are trying to predict discrete outcomes we are effictively doing classification
+
+We saw this yesterday witht the logit example 
+
+Now a different approach: \alert{Classification and Regression Trees}
+
+## Classification and Regression Trees (CART)
+
+Decision trees can be applied to both regression and classification problems
+
+They are intuitive, but run the danger of overfitting (what happens if you grow the largest possible decision tree for a given problem?)
+
+Therefore, people usually use extensions such as random forests
+
+## 
+
+\centering
+![](figures/tree.png)
+
+## CART
+
+### Advantages
+
+Easy to explain 
+
+Mimic the mental model we often use to make decisions
+
+Can be displayed graphically
+
+### Main disadvantage
+
+Performance
 
 
+## CART example: Classifying cuisine given ingredients 
 
+```{r}
+library("jsonlite")
+food = fromJSON("~/git/sds_summer/data/food.json")
+```
+
+## Preparation I
+
+```{r}
+food$ingredients = lapply(food$ingredients, 
+                          FUN=tolower)
+food$ingredients = lapply(food$ingredients, 
+                          FUN=function(x) 
+                            gsub("-", "_", x))  
+food$ingredients = lapply(food$ingredients, 
+                          FUN=function(x) 
+                            gsub("[^a-z0-9_ ]", "", x))
+```
+
+## Prepartion II
+
+```{r}
+library("tm")
+combi_ingredients = c(Corpus(VectorSource(food$ingredients)),
+                      Corpus(VectorSource(food$ingredients)))
+combi_ingredients = tm_map(combi_ingredients, stemDocument,
+                           language="english")
+combi_ingredientsDTM = DocumentTermMatrix(combi_ingredients)
+combi_ingredientsDTM = removeSparseTerms(combi_ingredientsDTM, 0.99)
+combi_ingredientsDTM = as.data.frame(
+  as.matrix(combi_ingredientsDTM))
+combi = combi_ingredientsDTM
+combi_ingredientsDTM$cuisine = as.factor(
+  c(food$cuisine, rep("italian", nrow(food))))
+```
+
+## 
+
+```{r}
+trainDTM  = combi_ingredientsDTM[1:nrow(food), ]
+testDTM = combi_ingredientsDTM[-(1:nrow(food)), ]
+```
+
+## Estimate the model
+
+```{r}
+library("rpart")
+set.seed(1)
+model = rpart(cuisine ~ ., data = trainDTM, 
+              method = "class")
+cuisine = predict(model, newdata = testDTM, 
+                  type = "class")
+```
+
+## Decision Tree
+
+\centering
+![](figures/food.pdf)
+
+## Random forests
+
+Random Forest algorithms are so-called ensemble models
+
+This means that the model consists of many smaller models
+
+The sub-models for Random Forests are classification and regression trees
+
+## Bagging
+
+Breiman (1996) proposed bootstrap aggregating – “bagging” – to to reduce the risk of overfitting. 
+
+The core idea of bagging is to decrease the variance of the predictions of one model, by fitting several models and averaging over their predictions
+
+In order to obtain a variety of models that are not overfit to the available data, each component model is fit only to a bootstrap sample of the data
+
+## Random forest intution
+
+Random forests extended the logic of bagging to predictors. 
+
+This means that, instead of choosing the split from among all the explanatory variables at each node in each tree, only a random subset of the explanatory variables are used
+
+If there are some very important variables they might overshadow the effect of weaker predictors because the algorithm searches for the split that results in the largest reduction in the loss function. 
+
+If at each split only a subset of predictors are available to be chosen, weaker predictors get a chance to be selected more often, reducing the risk of overlooking such variables
+
+## 
+
+\centering
+![](figures/zm.png)
+
+[Jones & Linder. 2015](http://zmjones.com/static/papers/rfss_manuscript.pdf).
+
+---
+
+\LARGE Unsupervised Learning
+
+## Supervised vs unsupervised
+
+**Supervised**
+
+You have an outcome `Y` and some covariates `X`
+
+**Unsupervised**
+
+You have a bunch of observations `X` and you want to understand the relationships between them.
+
+You are usually trying to understand patterns in `X` or group the variables in `X` in some way
+
+## Principal Components Analysis
+
+You have a set of multivariate variables $X_1,...,X_p$
+
+- Find a new set of multivariate variables that are uncorrelated and explain as much variance as possible.
+- If you put all the variables together in one matrix, find the best matrix created with fewer variables (lower rank) that explains the original data.
+
+The first goal is statistical and the second goal is data compression.
+
+##
+
+\centering
+![](figures/pcs1.png)
+
+
+## Example: Building a market index
+
+```{r,warning=FALSE, message = FALSE}
+library("readr")
+gh.link = "https://raw.githubusercontent.com/"
+user.repo = "johnmyleswhite/ML_for_Hackers/"
+branch = "master/"
+link = "08-PCA/data/stock_prices.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+df = read_csv(data.link)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(df[1:5, 1:3])
+```
+
+##
+
+```{r, echo = FALSE}
+p = ggplot(df %>% filter(Stock %in% unique(df$Stock)[1:6]), 
+           aes(x = Date, y = Close))
+p + geom_point(alpha = .1, color = "yellow") +
+  facet_wrap(~ Stock, ncol = 3) +
+  geom_smooth()
+```
+
+## Market index
+
+Let's reduce the 25 stocks to 1 dimension and let's call that our *market index*
+
+Dimensionality reduction: shrink a large number of correlated variables into a smaller number
+
+Can be used in many different situations: when we have too many variables for OLS, for unsupervised learning, etc. 
+
+##
+
+```{r, message = FALSE, warning = FALSE}
+library("tidyr")
+df.wide = df %>% spread(Stock, Close)
+df.wide = df.wide %>% na.omit
+```
+
+## PCA
+
+```{r, message = FALSE, warning = FALSE}
+pca = princomp(select(df.wide, -Date))
+```
+
+## Creating market index
+
+```{r}
+market.index = predict(pca)[, 1]
+market.index = data.frame(
+  market.index = market.index, 
+  Date = df.wide$Date)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(market.index[1:5, ])
+```
+
+## Validation
+
+**Question**: How do we validate our index? 
+
+One suggestion: we can compare it to Dow Jones
+
+##
+
+```{r}
+library("lubridate")
+link = "08-PCA/data/DJI.csv"
+data.link = paste0(gh.link, user.repo, branch, link)
+dj = read_csv(data.link)
+dj = dj %>% 
+  filter(ymd(Date) > ymd('2001-12-31')) %>% 
+  filter(ymd(Date) != ymd('2002-02-01')) %>% 
+  select(Date, Close)
+market.data = inner_join(market.index, dj)
+```
+
+## 
+
+```{r, echo = FALSE}
+knitr::kable(market.data[1:5, ])
+```
+
+
+## 
+
+```{r, echo = FALSE}
+p = ggplot(market.data, aes(x = market.index * (-1), y = Close))
+p + geom_point(alpha = .1) + 
+  geom_smooth(method = "lm") 
+```
+
+## 
+
+```{r, warning = FALSE}
+market.data = market.data %>% 
+  mutate(
+    market.index = scale(market.index * (-1)),
+    Close = scale(Close))
+market.data = market.data %>% 
+  gather(index, value, -Date)
+```
+
+## 
+
+```{r, echo = FALSE}
+library("viridis")
+p = ggplot(market.data, 
+           aes(x = Date, y = value, group = index, colour = index))
+p + geom_line() + 
+  scale_color_viridis(discrete = TRUE)
+```
 
 

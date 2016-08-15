@@ -648,7 +648,6 @@ But generally, that means that all our models are somewhat biased (making infere
 
 ## Concepts
 
-
 \alert{Cross validation}: Split data in test and training data. Train model on training data, test it on test data
 
 \alert{Regularization}: A technique used in an attempt to solve overfitting problems
