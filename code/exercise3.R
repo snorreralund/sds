@@ -37,12 +37,12 @@ df = df %>%
   mutate(
     warbefore = if_else(
       interwarbefore == 1 | 
-        leaders$civilwarbefore == 1,
+        civilwarbefore == 1,
       1, 0)) %>% 
   mutate(
     warafter = if_else(
       interwarafter == 1 | 
-        leaders$civilwarafter == 1,
+        civilwarafter == 1,
       1, 0))
 
 df %>% 
