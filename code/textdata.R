@@ -30,10 +30,16 @@ review_words = reviews %>%
 review_words %>% dim
 
 ## ------------------------------------------------------------------------
+stopwords = stop_words$word
+
+test = str_detect(review_words$word, "^[a-z']+$")
+test[1:30]
+review_words$word[1:30]
+test2 = str_detect(review_words$word, "^[a-z]+")
+
 review_words = review_words %>% 
   filter(!word %in% stop_words$word) %>% 
   filter(str_detect(word, "^[a-z']+$"))
-
 
 ## ------------------------------------------------------------------------
 AFINN = sentiments %>%

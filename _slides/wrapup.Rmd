@@ -1,0 +1,89 @@
+---
+author: Sebastian Barfort
+title: "Social Data Science"
+subtitle: Wrap Up
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  beamer_presentation:
+    keep_tex: no
+    theme: metropolis
+    latex_engine: xelatex
+    slide_level: 2
+    incremental: no
+    fig_width: 7
+    fig_height: 6
+    fig_caption: false
+    includes:
+      in_header: header.tex
+fontsize: 10pt
+classoption: compress
+---
+
+```{r Setup, include=FALSE, results='hide', warning=FALSE}
+hook_output = knitr::knit_hooks$get('output')
+knitr::knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+knitr::opts_chunk$set(
+              dev= "pdf",
+               fig.width=4.25,
+               fig.height=2.5,
+               fig.show="hold",
+               fig.lp="fig:",
+               dpi = 300,
+               cache=TRUE,
+               par=TRUE,
+               echo=TRUE,
+               message=FALSE,
+               warning=FALSE)
+```
+
+## Welcome
+
+### Course Description
+
+> The objective of this course is to learn how to \alert{analyze}, \alert{gather} and \alert{work} with modern quantitative social science data.
+
+## Exam 
+
+1. **Asking interesting social science questions**
+2. **Data Gathering**
+3. **Visualization**
+4. **Different types of data**
+5. **Causality and Prediction**
+6. **Ethics**
+
+## Formalities
+
+- 8-12 normal pages
+- Upload project in `pdf` 
+- Upload code as separate `.R` file. 
+
+I'm in my office next week (but write if you want to drop by)
+
+## Want to learn more? 
+
+### R 
+
+- [R for data science](http://r4ds.had.co.nz)
+- [Tidy text mining](https://github.com/dgrtwo/tidy-text-mining)
+- [Machine learning for hackers](http://shop.oreilly.com/product/0636920018483.do)
+- R Bloggers
+- [CopenhagenR meetup](http://www.meetup.com/CopenhagenR-useR-Group/)
+
+### D3
+
+- [Interactive data visualization for the web](http://shop.oreilly.com/product/0636920026938.do)
+
+### Statistical learning
+
+- [Coursera](https://www.coursera.org/specializations/jhu-data-science)
+- DTU
+
