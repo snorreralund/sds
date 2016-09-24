@@ -123,6 +123,8 @@ Read one of the following
 
 - Samii, Cyrus. 2016. ["Causal Empiricism in Quantitative Research"](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2776850). *Journal of Politics* 78(3):941–955.
 
+- Deaton, Angus, and Nancy Cartwright. 2016. [Understanding and Misunderstanding Randomized Controlled Trials](https://www.nber.org/papers/w22595.ack). No. w22595. National Bureau of Economic Research.
+
 *Keywords*: Prediction, Statistical Learning
 
 - Kleinberg, Jon, et al. "[Prediction policy problems](http://www.cs.cornell.edu/home/kleinber/aer15-prediction.pdf)." *American Economic Review*, 105.5 (2015): 491-495.
