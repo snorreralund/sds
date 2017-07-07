@@ -60,11 +60,13 @@ After installation of Python please to run it by entering cmd or terminal and `p
 
 ```python
 1+2
->>> 3```
+>>> 3
+```
 
 ```python
 print('Welcome to Social Data Science')
->>> Welcome to Social Data Science```
+>>> Welcome to Social Data Science
+```
 
 #### Learning basic python
 
