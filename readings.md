@@ -28,7 +28,7 @@ If you are already familiar with R and prefer to work with R in the exercises yo
 
 **Required - Python programming**
 
-- [Preparing for Social Data Science](https://sebastianbarfort.github.io/sds_summer/posts/2016/08/01/preparing-for-sds.html)
+- [Preparing for Social Data Science](https://abjer.github.io/sds/posts/2017/07/07/preparing-for-sds.html)
 
 - [The Scientist: Get With the Program](http://www.the-scientist.com/?articles.view/articleNo/43632/title/Get-With-the-Program/)
 
@@ -227,5 +227,3 @@ Matthias Feurer, Aaron Klein, Katharina Eggensperger, Jost Springenberg, Manuel 
 
 - King, G., Pan, J., & Roberts, M. E. 2013. [How censorship in China allows government criticism but silences collective expression](http://gking.harvard.edu/files/censored.pdf). *American Political Science Review*, 107(02), 326-343.
 -Andrea Ceron, Luigi Curini, Stefano M. Iacus. "[Using Sentiment Analysis to Monitor Electoral Campaigns: Method Matters—Evidence From the United States and Italy](http://journals.sagepub.com/doi/abs/10.1177/0894439314521983)
-
-##### Footnotes
