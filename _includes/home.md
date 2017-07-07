@@ -5,7 +5,7 @@ Summer School 2017<br/>
 Department of Economics<br/>
 University of Copenhagen<br/>
 Instructors: <a href="http://www.econ.ku.dk/ddl/">David Dreyer Lassen</a>, <a href="http://abjer.github.io/">Andreas Bjerre-Nielsen</a> & Snorre Ralund<br/>
-Date: August 8 - August 26, 2016 <br/>
+Date: August 7 - August 25, 2016 <br/>
 Time: Lectures: 9-12, Exercises: 13-15  <br/>
 </center>
 <br/>
@@ -21,7 +21,7 @@ This aim of this course is fourfold:
 
 The course will consist of 3 hours of lectures and 2 hours of exercises and problem solving per day. The lectures will focus on the broad topics covered in the course (part 1-3 listed above). In the exercise classes we will get our hands dirty and present data science methods needed for collecting and analyzing real-world data. In addition to core computational concepts, these classes will focus on the following topics
 
-1. **Collecting data**: We will teach how to "scrape", i.e. find and fetch data, from websites as well as working with [APIs](http://en.wikipedia.org/wiki/Application_programming_interface).
+1. **Generating data**: We will teach how to "scrape", i.e. find and collect data, from websites as well as working with [APIs](http://en.wikipedia.org/wiki/Application_programming_interface).
 2. **Data manipulation tools**: Participants will learn how to import, transform, munge and merge data from various sources.
 3. **Visualization tools**: We will learn best practices for visualizing data in different steps of a data analysis. Participants will learn how to visualize raw data as well as effective tools for communicating results from statistical models for broader audiences.
 4. **Reproducability tools**: Participants will learn how to use version control and social coding using [Github](http://en.wikipedia.org/wiki/GitHub) and how to effectively communicate the insights of an analysis using markdown.
