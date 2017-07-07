@@ -1,6 +1,6 @@
 # Site settings
 title: Social Data Science
-#email: sebastian.barfort@econ.ku.dk
+#email: andreas.bjerre-nielsen@econ.ku.dk
 description: Summer School 2017<br/> Department of Economics<br/> University of Copenhagen
 baseurl: "/sds"
 url:  "abjer.github.io" # the base hostname & protocol for your site
