@@ -1,10 +1,10 @@
 <center>
 <h1>Social Data Science</h1>
 
-Summer School 2016<br/>
+Summer School 2017<br/>
 Department of Economics<br/>
 University of Copenhagen<br/>
-Instructors: <a href="http://www.econ.ku.dk/ddl/">David Dreyer Lassen</a> & <a href="http://sebastianbarfort.github.io/">Sebastian Barfort</a><br/>
+Instructors: <a href="http://www.econ.ku.dk/ddl/">David Dreyer Lassen</a>, <a href="http://abjer.github.io/">Andreas Bjerre-Nielsen</a> & Snorre Ralund<br/>
 Date: August 8 - August 26, 2016 <br/>
 Time: Lectures: 9-12, Exercises: 13-15  <br/>
 </center>
@@ -21,7 +21,7 @@ This aim of this course is fourfold:
 
 The course will consist of 3 hours of lectures and 2 hours of exercises and problem solving per day. The lectures will focus on the broad topics covered in the course (part 1-3 listed above). In the exercise classes we will get our hands dirty and present data science methods needed for collecting and analyzing real-world data. In addition to core computational concepts, these classes will focus on the following topics
 
-1. **Generating new data**: We will learn how to collect and scrape data from websites as well as working with [APIs](http://en.wikipedia.org/wiki/Application_programming_interface).
+1. **Collecting data**: We will teach how to "scrape", i.e. find and fetch data, from websites as well as working with [APIs](http://en.wikipedia.org/wiki/Application_programming_interface).
 2. **Data manipulation tools**: Participants will learn how to import, transform, munge and merge data from various sources.
 3. **Visualization tools**: We will learn best practices for visualizing data in different steps of a data analysis. Participants will learn how to visualize raw data as well as effective tools for communicating results from statistical models for broader audiences.
 4. **Reproducability tools**: Participants will learn how to use version control and social coding using [Github](http://en.wikipedia.org/wiki/GitHub) and how to effectively communicate the insights of an analysis using markdown.
@@ -29,14 +29,14 @@ The course will consist of 3 hours of lectures and 2 hours of exercises and prob
 
 2 hours of exercises a day is not a large amount of time for learning how to code. We will use some of this time like development meetings: going over assignments, having detailed code reviews of various forms, and discussing blocking issues and potential solutions.
 
-As increasing emphasis in academics is being placed on the skills needed to effectively gather, handle, and analyze data as well as present results to a range of audiences, this course will provide you with important tools for future academic study. Furthermore, the skills taught in this course are also widely used in business. R programming skills in particular are [highly valued](http://blog.revolutionanalytics.com/2014/02/r-salary-surveys.html) in fields such as finance and information technology. As this course is focused on general skills for working with social science data such as gathering and visualization, it is equally relevant for students seeking careers outside academia where skills such as the ability to effectively communicate the results of an analysis are in high demand.
+As increasing emphasis in academics is being placed on the skills needed to effectively gather, handle, and analyze data as well as present results to a range of audiences, this course will provide you with important tools for future academic study. Furthermore, the skills taught in this course are also widely used in business. Python programming skills in particular are [highly valued](http://www.payscale.com/research/US/Skill=Python/Salary) in fields such as data science, finance and information technology. As this course is focused on general skills for working with social science data such as gathering and visualization, it is equally relevant for students seeking careers outside academia where skills such as the ability to effectively communicate the results of an analysis are in high demand.
 
 This course assumes no knowledge of any particular software or computer program, but while we will try to demystify the technological side of things so students feel comfortable getting started and thinking like a data scientist, this *will be a technical course*, and students should expect to spend a significant amount of time learning these tools.
 
-Because the course builds on a wide range of techniques, we do not have any hard requirements, but students are expected to have an interest in some subset of: statistics, econometrics, linear algebra, and a scripting language (we will use R in this course).
+Because the course builds on a wide range of techniques, we do not have any hard requirements, but students are expected to have an interest in some subset of: statistics, econometrics, linear algebra, and a scripting language (we will use Python in this course).
 
 Course work will include writing
-  <a href="http://en.wikipedia.org/wiki/R_(programming_language)">R code</a>.
+  <a href="http://en.wikipedia.org/wiki/Python_(programming_language)">Python code</a>.
 
 Code will be distributed and collected via
   <a href="http://en.wikipedia.org/wiki/Git_(software)">Git</a>, hosted on
