@@ -213,16 +213,22 @@ Matthias Feurer, Aaron Klein, Katharina Eggensperger, Jost Springenberg, Manuel 
 
 ## August 17
 
-*Keywords*: Text as Data. (un+)Supervised Learning in Natural Language Processing
+*Keywords*: Text as Data. 
+
+** Supervised Learning in Natural Language Processing**
+
 - Text analysis. BDSS Chapter 7.
 - Grimmer, Justin, and Brandon M. Stewart. 2013. "[Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://pan.oxfordjournals.org/content/early/2013/01/21/pan.mps028.short)." *Political Analysis*, 21.3: 267-297.
+
 **Unsupervised learning in natural language processing**
 - Word Embeddings. Baroni et al. (2014). "[Don't count, predict! A systematic comparison of context-counting vs. context-predicting semantic vectors.](http://clic.cimec.unitn.it/marco/publications/acl2014/baroni-etal-countpredict-acl2014.pdf)"
 
-**Background more on wordembeddings**
+**Background +  more on wordembeddings**
+
 - Word2Vec. Mikolov et al. (2013). "[Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf)"
 - Glove: "[Global Vectors for Word Representation.](https://nlp.stanford.edu/pubs/glove.pdf)"
 - Learning to understand sentiment from unlabeled data. "[Unsupervised Sentiment Neuron](https://blog.openai.com/unsupervised-sentiment-neuron/)"
+
 **Inspiration**
 
 - King, G., Pan, J., & Roberts, M. E. 2013. [How censorship in China allows government criticism but silences collective expression](http://gking.harvard.edu/files/censored.pdf). *American Political Science Review*, 107(02), 326-343.
