@@ -215,7 +215,7 @@ Matthias Feurer, Aaron Klein, Katharina Eggensperger, Jost Springenberg, Manuel 
 
 *Keywords*: Text as Data. 
 
-** Supervised Learning in Natural Language Processing**
+**Supervised Learning in Natural Language Processing**
 
 - Text analysis. BDSS Chapter 7.
 - Grimmer, Justin, and Brandon M. Stewart. 2013. "[Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://pan.oxfordjournals.org/content/early/2013/01/21/pan.mps028.short)." *Political Analysis*, 21.3: 267-297.
