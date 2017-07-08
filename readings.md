@@ -32,7 +32,7 @@ If you are already familiar with R and prefer to work with R in the exercises yo
 
 - [The Scientist: Get With the Program](http://www.the-scientist.com/?articles.view/articleNo/43632/title/Get-With-the-Program/)
 
-- Michael Dawson, 2010. *Python Programming for the Absolute Beginner, 3rd Edition*. Read pages 1-33.
+- Michael Dawson, 2010. *Python Programming for the Absolute Beginner, 3rd Edition*. Read pages 7-44, 53-63 (copies will be provided).
 
 **Inspiration**
 
