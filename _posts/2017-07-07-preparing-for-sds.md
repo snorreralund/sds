@@ -71,7 +71,7 @@ print('Welcome to Social Data Science')
 #### Learning basic python
 
 In order to get the full benefits out of the course we recommend having basic Python skills. We will spend only one lecture on introducing Python so getting familiar with basic functions and datatypes is a great preparation. This skill can be acquired through self-studies, for instance through the free course, Learn Python The Hard Way, available [here](https://learnpythonthehardway.org/python3/).
-A good sanity check of whether or not you are ready for the course is to complete the following exercises [here](https://raw.githubusercontent.com/abjer/sds/master/code/training_notebook.ipynb).
+A good sanity check of whether or not you are ready for the course is to complete the following exercises [here](https://www.dropbox.com/s/6dr7obgown3i67t/Training_notebook.ipynb?dl=1).
 
 ## A Git client
 
