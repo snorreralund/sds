@@ -70,7 +70,17 @@ print('Welcome to Social Data Science')
 
 #### Learning basic python
 
-In order to get the full benefits out of the course we recommend having basic Python skills. We will spend only one lecture on introducing Python so getting familiar with basic functions and datatypes is a great preparation. This skill can be acquired through self-studies, for instance through [this free course](http://www.python-course.eu/python3_interactive.php).
+In order to get the full benefits out of the course we recommend having basic Python skills. We will spend only one lecture on introducing Python so getting familiar with basic functions and datatypes is a great preparation. This skill can be acquired through self-studies, for instance through [this free course](http://www.python-course.eu/python3_interactive.php). NOTE! you should only do the following sections: 
+- [Python shell](http://www.python-course.eu/python3_interactive.php); 
+- [Python scripts](http://www.python-course.eu/python3_execute_script.php); 
+- [Indentation](http://www.python-course.eu/python3_blocks.php);
+- [Operators](http://www.python-course.eu/python3_operators.php);
+- [Sequential Data Types](http://www.python-course.eu/python3_sequential_data_types.php);
+- [Conditional statements](http://www.python-course.eu/python3_conditional_statements.php);
+- [While loops](http://www.python-course.eu/python3_loops.php) and [for loops](http://www.python-course.eu/python3_for_loop.php);
+- [Functions](http://www.python-course.eu/python3_functions.php)
+
+
 A good sanity check of whether or not you are ready for the course is to complete the following exercises [here](https://www.dropbox.com/s/6dr7obgown3i67t/Training_notebook.ipynb?dl=1).
 
 ## A Git client
