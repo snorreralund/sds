@@ -81,7 +81,7 @@ In order to get the full benefits out of the course we recommend having basic Py
 - [Functions](http://www.python-course.eu/python3_functions.php)
 
 
-A good sanity check of whether or not you are ready for the course is to complete the following exercises [here](https://www.dropbox.com/s/6dr7obgown3i67t/Training_notebook.ipynb?dl=1).
+A good sanity check of whether or not you are ready for the course is to complete the following exercises [here](https://www.dropbox.com/s/6dr7obgown3i67t/Training_notebook.ipynb?dl=1). Solution to the exercises can be found [here](https://www.dropbox.com/s/cmfs4s9m5ybv8pw/Training_notebook-solutions.ipynb?dl=1).
 
 ## A Git client
 
