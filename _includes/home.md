@@ -7,7 +7,7 @@ University of Copenhagen<br/>
 Instructors: <a href="http://www.econ.ku.dk/ddl/">David Dreyer Lassen</a>, <a href="http://abjer.github.io/">Andreas Bjerre-Nielsen</a> & Snorre Ralund<br/>
 Date: August 7 - August 25, 2017 <br/>
 Time: Lectures: 9-12, Exercises: 13-15  <br/>
-Place: CSS 35.3.12 see [map](http://samf.ku.dk/kontakt/kort/) <br/>
+Place: CSS 35.3.12 see <a href= 'http://socialsciences.ku.dk/campusmap/'> map </a><br/>
 </center>
 <br/>
 
