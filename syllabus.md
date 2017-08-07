@@ -8,7 +8,7 @@ A tentative syllabus, subject to change, is below.
 
 |Date|Time|Keywords|Slides/Exercises|
 |:----|:-----|:-----|:-----|
-|Aug 7| 9-12 | Introduction to SDS |
+|Aug 7| 9-12 | Introduction to SDS | [Introduction to SDS](https://abjer.github.io/sds/slides/SDS_lecture1%20_2017.pdf) ([keynote](https://abjer.github.io/sds/slides/SDS_lecture1%20_2017.key))
 |Aug 7| 13-15 | Introduction to Python | [An introduction to Python](https://abjer.github.io/sds/slides/intro_python.pdf) ([notebook](https://abjer.github.io/sds/slides/intro_python.ipynb))
 |Aug 8| 9-12 | Data Visualization | [Modern Python Plotting](https://abjer.github.io/sds/slides/plotting.pdf) ([notebook](https://abjer.github.io/sds/slides/plotting.ipynb))
 |Aug 8| 13-15 | Data Manipulation (I) | [Data structuring](https://abjer.github.io/sds/slides/data_structuring.pdf) ([notebook](https://abjer.github.io/sds/slides/data_structuring.ipynb))
