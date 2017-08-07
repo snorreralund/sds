@@ -122,7 +122,16 @@ Below are some interesting academic papers using data scraped from online source
 
 *Description:* We will introduce the Jupyter notebook for publication of code and visualizing data insights. We will show how the notebook can be used to make interactive visualizations.
 
-**Required**
+**Reproducible research - required**
+
+*On markdown*
+- Nolan, John. 2015. "[How to Write Faster, Better & Longer: The Ultimate Guide to Markdown](https://blog.ghost.org/markdown/)."
+
+*On git*
+- Jones, Zachery. 2015. "[Git & Github tutorial](http://zmjones.com/git-github-tutorial/)".
+ - Note that an optional followup can be found in Rainey, Carlisle. 2015. "[Git for Political Science](https://github.com/carlislerainey/git-for-political-science)".
+
+**Big data - required**
 
 - John Gerring. 2012. Measurements. Chapter 7 in Social Science Methodology, 2. Ed., Cambridge University Press. ((*bad*) copies will be provided)
 
@@ -132,11 +141,7 @@ Below are some interesting academic papers using data scraped from online source
 
 - Jesse Singal. 2015. "[The Case of the Amazing Gay-Marriage Data: How a Graduate Student Reluctantly Uncovered a Huge Scientific Fraud](http://nymag.com/scienceofus/2015/05/how-a-grad-student-uncovered-a-huge-fraud.html)." New York Magazine.
 
-Read one of the following
 
-- Jones, Zachery. 2015. "[Git & Github tutorial](http://zmjones.com/git-github-tutorial/)".
-
-- Rainey, Carlisle. 2015. "[Git for Political Science](https://github.com/carlislerainey/git-for-political-science)".
 
 
 **Background**
