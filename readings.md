@@ -59,6 +59,8 @@ Required material
 - For stylish [seaborn plots](https://seaborn.pydata.org/index.html) read tutorial on [plotting distrutions](https://seaborn.pydata.org/tutorial/distributions.html#distribution-tutorial) and [categorical data](https://seaborn.pydata.org/tutorial/categorical.html#categorical-tutorial).
 
 
+If you want to review some of the material on visualizations in class you can check out these videos on visualizations in  [Pandas](https://www.coursera.org/learn/python-plotting/lecture/e7o5K/plotting-with-pandas) and [Seaborn](https://www.coursera.org/learn/python-plotting/lecture/FnAul/seaborn).
+
 Browse the following
 
 - Schwabish, Jonathan A. 2014. "[An Economist's Guide to Visualizing Data](https://www.aeaweb.org/articles.php?doi=10.1257/jep.28.1.209)". *Journal of Economic Perspectives*, 28(1): 209-34.
@@ -213,7 +215,7 @@ Matthias Feurer, Aaron Klein, Katharina Eggensperger, Jost Springenberg, Manuel 
 
 ## August 17
 
-*Keywords*: Text as Data. 
+*Keywords*: Text as Data.
 
 **Supervised Learning in Natural Language Processing**
 
